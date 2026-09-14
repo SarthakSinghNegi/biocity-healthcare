@@ -6,11 +6,19 @@
 > and caveats. If you change the site, **update this file in the same commit** (see
 > [§14 Maintenance Protocol](#14-maintenance-protocol)).
 
-- **Last updated:** 2026-07-30
+- **Last updated:** 2026-08-17
 - **Maintainer:** Nikhil Gupta (GitHub `nikhilGupta24`)
 - **Supersedes** (for website specifics): the older `docs/BIOCITY_PLAYBOOK.md` and
   `docs/KNOWLEDGE_BANK.html`, which describe an earlier single-file prototype and are now
   **out of date** (the site has since grown to 24 interior pages + shared assets).
+
+> **📚 Related — product/catalog knowledge:** this file covers the *website*. The
+> **diagnostics catalog** (85 packages, 489 tests, category-wise breakdowns, mind maps and the
+> recommender decision map) lives in
+> [`docs/BLOOD_TEST_CATALOG_KNOWLEDGE.md`](BLOOD_TEST_CATALOG_KNOWLEDGE.md), with its
+> machine-readable twin at [`v3/assets/data/catalog.json`](../v3/assets/data/catalog.json)
+> (regenerate via `python3 docs/gen_catalog_kb.py`). Use it when wiring the packages grid,
+> comparison, individual test pages or the "Find My Test" recommender.
 
 ---
 
@@ -354,6 +362,11 @@ When you make a change to the site, **in the same commit**:
   every page (home finder, all interior pages via `site.js`, and the 4 self-contained pages via
   inline edits). Home Lab Finder: **removed the graph-paper grid** from the first section (solid
   `--bg`), and made the background photos **static + lab-only** (removed float/parallax).
+- **2026-08-17** — Added **diagnostics catalog knowledge bank** (`docs/BLOOD_TEST_CATALOG_KNOWLEDGE.md`
+  + generator `docs/gen_catalog_kb.py`) and machine-readable `v3/assets/data/catalog.json` (85 packages
+  / 489 tests, category-wise breakdowns, 5 mind maps, recommender map) — sourced from
+  `Blood_Test_Packages_Completed.xlsx`, ready to wire into packages/recommender. Also made **v3 a
+  self-contained site** (own `pages/` + `assets/`) and pointed `engine.py` at it as the web root.
 - **2026-07-30** — Home **Lab Finder console** (live search + category tabs/tiles), foreground
   **highlight photo rail**, **aligned** symmetric background photos (replacing scattered drift),
   and **1mg-style sticky callback bar** (`.cbar`, desktop/tablet). Old hero heading demoted to

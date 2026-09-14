@@ -150,12 +150,65 @@ h2{font-size:clamp(2rem,4.6vw,3.5rem);font-weight:700}
 @media(min-width:980px){.burger{display:none}}
 .burger i{width:20px;height:2px;background:var(--text);border-radius:2px;transition:all .35s cubic-bezier(.16,1,.3,1);display:block}
 .burger.on i:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.burger.on i:nth-child(2){opacity:0}.burger.on i:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.mmenu{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .5s}
-.mmenu.on{opacity:1;pointer-events:auto}
-.mmenu a{font-family:'Fraunces',serif;font-size:clamp(1.15rem,4vw,1.7rem);font-weight:600;color:var(--text2);transition:color .3s}
-.mmenu a:hover{color:var(--accent)}
-.mmenu{overflow-y:auto;padding:90px 20px 40px;justify-content:flex-start}
-.mmenu .mm-h{font-family:'Plus Jakarta Sans',sans-serif;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--text3);margin-top:14px}
+.mmenu{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .38s;transform:translateY(8px)}
+.mmenu.on{opacity:1;pointer-events:auto;transform:none}
+.mm-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:86px 16px 10px}
+.mm-lbl{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin:0 0 12px 3px}
+.mm-sec{margin-top:24px}
+/* ── double-nav (segment → category → items) ── */
+.mmb-seg{display:flex;gap:5px;background:var(--gl);border:1px solid var(--glB);border-radius:14px;padding:5px;margin-bottom:16px}
+.mmb-seg button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:12px 8px;border-radius:10px;font:inherit;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.82rem;color:var(--text2);background:none;border:0;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1)}
+.mmb-seg button svg{width:16px;height:16px;stroke-width:2}
+.mmb-seg button.on{color:#fff;background:var(--accent);box-shadow:0 5px 18px var(--accentG)}
+.mmb-track{position:relative}
+.mmb-cats{display:flex;flex-direction:column;gap:8px;animation:mmFade .3s ease}
+.mmb-cats.hide{display:none}
+.mmb-cat{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:15px;border:1px solid var(--glB);background:var(--gl);cursor:pointer;text-align:left;width:100%;transition:transform .18s,border-color .25s,background .25s}
+.mmb-cat:hover{border-color:var(--tc);background:color-mix(in srgb,var(--tc) 7%,var(--gl))}
+.mmb-cat:active{transform:scale(.98)}
+.mmb-cat .mmc-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--tc);background:color-mix(in srgb,var(--tc) 16%,transparent);flex-shrink:0}
+.mmb-cat .mmc-ic svg{width:20px;height:20px;stroke-width:2}
+.mmb-cat .mmc-n{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.mmb-cat .mmc-n>span:first-child{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.92rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mmb-cat .mmc-c{font-size:.72rem;color:var(--text3);font-weight:600}
+.mmb-cat .mmc-chev{width:17px;height:17px;color:var(--tc);flex-shrink:0}
+/* level 2 */
+.mmb-p2[hidden]{display:none}
+.mmb-p2{animation:mmSlide .36s cubic-bezier(.16,1,.3,1)}
+@keyframes mmSlide{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@keyframes mmFade{from{opacity:0}to{opacity:1}}
+.mmb-back{display:inline-flex;align-items:center;gap:7px;font:inherit;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.8rem;color:var(--accent);background:var(--accentS);border:1px solid var(--accentG);border-radius:100px;cursor:pointer;padding:8px 15px;margin-bottom:14px}
+.mmb-back svg{width:15px;height:15px;transform:rotate(180deg)}
+.mmb-l2h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
+.mmb-l2h b{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:800;color:var(--text)}
+.mmb-l2h a{font-size:.73rem;font-weight:700;color:var(--accent);flex-shrink:0;white-space:nowrap}
+.mmb-items{display:flex;flex-direction:column;gap:7px}
+.mmb-item{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:13px;border:1px solid var(--glB);background:var(--gl);transition:border-color .2s,transform .18s}
+.mmb-item:active{transform:scale(.985)}
+.mmb-item:hover{border-color:var(--accent)}
+.mmb-item .mi-ic{width:33px;height:33px;border-radius:9px;display:grid;place-items:center;color:var(--accent);background:var(--accentS);flex-shrink:0}
+.mmb-item .mi-ic svg{width:16px;height:16px}
+.mmb-item .mi-t{flex:1;min-width:0}
+.mmb-item .mi-t b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mmb-item .mi-t span{font-size:.72rem;color:var(--text3)}
+.mmb-item .mi-t .pr{color:var(--accent);font-weight:700}
+/* quick links */
+.mm-quick{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mm-quick a{display:flex;align-items:center;gap:9px;padding:14px;border-radius:14px;border:1px solid var(--glB);background:var(--gl);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.82rem;color:var(--text);transition:border-color .2s}
+.mm-quick a:active{transform:scale(.98)}
+.mm-quick a svg{width:18px;height:18px;color:var(--accent);stroke-width:2;flex-shrink:0}
+/* company accordion */
+.mm-comp{margin-top:24px;border-top:1px solid var(--glB);padding-top:18px}
+.mm-comp>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.mm-comp>summary::-webkit-details-marker{display:none}
+.mm-comp>summary .mm-lbl{margin-bottom:0}
+.mm-comp .mmco-chev{width:16px;height:16px;color:var(--text3);transform:rotate(90deg);transition:transform .3s}
+.mm-comp[open] .mmco-chev{transform:rotate(-90deg)}
+.mm-complist{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:14px}
+.mm-complist a{font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:500;color:var(--text2);padding:11px 12px;border-radius:11px;background:var(--gl);border:1px solid var(--glB)}
+/* sticky CTA */
+.mm-cta{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:9px;margin:8px 16px calc(16px + env(safe-area-inset-bottom));padding:16px;border-radius:100px;background:var(--accent);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.92rem;box-shadow:0 8px 28px var(--accentG)}
+.mm-cta svg{width:18px;height:18px;stroke-width:2.2}
 
 /* ─── mega menu (links to interior pages) ─── */
 .nav-links{display:none;align-items:center;gap:2px;margin-left:6px}
@@ -394,6 +447,27 @@ h2{font-size:clamp(2rem,4.6vw,3.5rem);font-weight:700}
 .rr-b1:hover{background:var(--accentH);transform:translateY(-2px)}
 .rr-b2{padding:12px 24px;border-radius:100px;border:1px solid var(--glBH);color:var(--text);font-weight:600;font-size:.8rem;transition:all .3s}
 .rr-b2:hover{border-color:var(--accent);color:var(--accent)}
+.rr-b3{padding:12px 24px;border-radius:100px;border:1px solid var(--accent);color:var(--accent);background:transparent;font-weight:700;font-size:.8rem;cursor:pointer;transition:all .3s}
+.rr-b3:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+.rec-prog{height:5px;border-radius:100px;background:var(--glB);overflow:hidden;margin-bottom:24px}
+.rec-prog .rp-fill{display:block;height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--accent),var(--accentH));transition:width .5s cubic-bezier(.16,1,.3,1)}
+.rec-sex{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rec-sxopt{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 8px;border-radius:14px;border:1px solid var(--glB);background:var(--gl);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1)}
+.rec-sxopt .ce{width:17px;height:17px;stroke-width:2}
+.rec-sxopt:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.rec-sxopt.on{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 18px var(--accentG)}
+.rr-covers{display:flex;flex-wrap:wrap;gap:7px;margin:-4px 0 18px}
+.rr-cover{font-size:.7rem;font-weight:600;padding:5px 11px;border-radius:100px;background:var(--gl);border:1px solid var(--glB);color:var(--text2)}
+.rr-cover.more{color:var(--accent);border-color:var(--accentG);background:var(--accentS)}
+.rr-alts{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.rr-alts-h{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--text2);margin-bottom:2px}
+.rr-alt{display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:14px;border:1px solid var(--glB);background:var(--card,var(--gl));transition:all .3s cubic-bezier(.16,1,.3,1)}
+.rr-alt:hover{border-color:var(--accent);transform:translateX(3px)}
+.rr-alt .ra-k{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);background:var(--accentS);padding:4px 9px;border-radius:100px;white-space:nowrap;flex-shrink:0}
+.rr-alt .ra-n{font-weight:600;font-size:.84rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rr-alt .ra-pr{font-weight:800;font-size:.9rem;color:var(--accent);flex-shrink:0}
+.rr-alt .ic{width:15px;height:15px;stroke-width:2.4;color:var(--text3);flex-shrink:0}
+@media(max-width:560px){.rec-sex{grid-template-columns:1fr}.rr-alt .ra-k{font-size:.55rem;padding:3px 7px}}
 
 /* ═══ PACKAGES ═══ */
 .pkgs{background:var(--bg2)}
@@ -1193,6 +1267,14 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
 /* red block a touch broader + prominent; blue strip stays within the boundary */
 #shop .w{max-width:1240px}
 #shop .pk-row{margin-top:2px}
+/* v4.3: image-free informative hero at top + search inside it + readable section headings */
+#hero-main{overflow:visible}
+#hero-main .osearch.in-hero{position:relative;z-index:60;max-width:560px}
+#hero-main .os-drop{z-index:70;max-height:min(56vh,400px)}
+@media(max-width:1023px){#hero-main .osearch.in-hero{margin-left:auto;margin-right:auto}}
+/* de-curl: professional, easy-to-read sans for the Explore section + card titles */
+#shop .shop-h h3,.pcard h4,.dm-card h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:-.01em}
+#shop .shop-h h3{font-weight:800}
 @media(max-width:640px){
   #home-hero{margin:58px 8px 0;border-radius:20px;min-height:auto}
   #home-hero .h2-in{padding-top:26px;padding-bottom:20px}
@@ -1210,6 +1292,98 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
 .pk-all{flex:0 0 200px;width:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(160deg,var(--accentS),transparent);border:1.5px dashed var(--accent);border-radius:20px;cursor:pointer;color:var(--accent);font-weight:800;text-align:center;padding:20px;transition:all .3s}
 .pk-all:hover{background:var(--accentS);transform:translateY(-5px)}
 .pk-all svg{width:30px;height:30px}
+/* ===== v4.4: highlight Explore · colourful tabs · controllable carousel · powerful finder ===== */
+/* bring the Explore section into view on the landing */
+#hero-main{min-height:clamp(520px,74vh,700px)}
+/* Explore eyebrow + heading emphasis */
+.shop-h{align-items:center}
+.shop-h .sh-l{min-width:0;display:flex;flex-direction:column;gap:4px}
+.shop-eyebrow{display:inline-flex;align-items:center;gap:8px;width:fit-content;font-family:'Plus Jakarta Sans',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);background:var(--accentS);border:1px solid var(--accentG);padding:6px 12px;border-radius:100px}
+.shop-eyebrow .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pdot 1.8s ease-out infinite}
+@keyframes pdot{0%{box-shadow:0 0 0 0 var(--accentG)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.pk-ctrls{display:flex;gap:9px;flex-shrink:0}
+.pk-nav{width:42px;height:42px;border-radius:50%;background:var(--surface);border:1px solid var(--glB);display:grid;place-items:center;cursor:pointer;color:var(--text);transition:all .25s}
+.pk-nav:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-2px);box-shadow:0 10px 24px var(--accentG)}
+.pk-nav:active{transform:translateY(0)}
+.pk-nav svg{width:18px;height:18px}
+@media(max-width:640px){.pk-nav{width:38px;height:38px}.shop-h .cnt{display:none}}
+/* colourful category tabs */
+.tab{background:color-mix(in srgb,var(--tc,#10b981) 13%,var(--surface));border:1px solid color-mix(in srgb,var(--tc,#10b981) 34%,transparent);color:var(--text)}
+.tab svg{color:var(--tc,#10b981)}
+.tab:hover{border-color:var(--tc,#10b981);transform:translateY(-2px);color:var(--text)}
+.tab.on{background:var(--tc,#10b981);border-color:var(--tc,#10b981);color:#fff;box-shadow:0 10px 24px color-mix(in srgb,var(--tc,#10b981) 42%,transparent)}
+.tab.on svg{color:#fff}
+/* controllable carousel — auto-scroll + swipe/drag + arrows */
+.pk-row{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:12px 0 18px;cursor:grab}
+.pk-row::-webkit-scrollbar{display:none}
+.pk-row.drag{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none}
+.pk-track{animation:none!important;width:max-content}
+.pcard{scroll-snap-align:start}
+/* smart finder oomph */
+.rec-stats{display:flex;gap:10px 20px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.rec-stat{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text2);font-weight:600}
+.rec-stat b{color:var(--text);font-weight:800}
+.rec-stat svg{width:16px;height:16px;color:var(--accent)}
+.rec .head .shop-eyebrow{display:flex;width:fit-content;margin:0 auto 14px}
+.os-res .r-hit{color:var(--accent);font-weight:600}
+/* ===== v4.5: comprehensive two-level mega-menu + interactive Explore category dropdown ===== */
+.nl-item.nl-wide{position:static}
+.megaX{max-width:min(940px,94vw);width:940px;padding:0;overflow:hidden}
+.mx-seg{display:flex;gap:6px;padding:14px 16px 2px}
+.mx-seg button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:12px;background:var(--surface2);border:1px solid var(--glB);color:var(--text2);font:inherit;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .25s}
+.mx-seg button svg{width:16px;height:16px}
+.mx-seg button:hover{color:var(--text);border-color:var(--accent)}
+.mx-seg button.on{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 22px var(--accentG)}
+.mx-body{display:grid;grid-template-columns:252px 1fr;height:min(66vh,440px)}
+.mx-rail{border-right:1px solid var(--glB);padding:12px;height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--glBH) transparent}
+.mx-rail::-webkit-scrollbar,.mx-panel::-webkit-scrollbar{width:7px}
+.mx-rail::-webkit-scrollbar-thumb,.mx-panel::-webkit-scrollbar-thumb{background:var(--glBH);border-radius:4px}
+.mx-rail::-webkit-scrollbar-thumb:hover,.mx-panel::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+.mx-cat{display:flex;align-items:center;gap:11px;width:100%;padding:10px 12px;border-radius:12px;cursor:pointer;color:var(--text2);font-weight:600;font-size:.82rem;transition:all .2s;border:1px solid transparent;text-align:left;background:none}
+.mx-cat .mxc-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;color:var(--tc,var(--accent));background:color-mix(in srgb,var(--tc,var(--accent)) 15%,transparent)}
+.mx-cat .mxc-ic svg{width:16px;height:16px}
+.mx-cat .mxc-n{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.mx-cat .mxc-c{font-size:.68rem;color:var(--text3);font-weight:600}
+.mx-cat .mxc-chev{width:14px;height:14px;opacity:0;transform:translateX(-4px);transition:all .2s;color:var(--tc,var(--accent))}
+.mx-cat:hover,.mx-cat.on{background:color-mix(in srgb,var(--tc,var(--accent)) 13%,var(--surface2));color:var(--text);border-color:color-mix(in srgb,var(--tc,var(--accent)) 32%,transparent)}
+.mx-cat.on .mxc-chev{opacity:1;transform:none}
+.mx-panel{padding:14px 16px;height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--glBH) transparent}
+.mx-phead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
+.mx-phead b{font-size:.92rem;font-weight:800;color:var(--text)}
+.mx-viewall{font-size:.74rem;font-weight:700;color:var(--accent);display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.mx-viewall svg{width:13px;height:13px}
+.mx-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.mx-item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:11px;transition:all .2s}
+.mx-item:hover{background:var(--accentS)}
+.mx-item .mi-ic{width:30px;height:30px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;color:var(--accent);background:var(--accentS);border:1px solid var(--glB);transition:all .3s}
+.mx-item:hover .mi-ic{background:var(--accent);color:#fff}
+.mx-item .mi-ic svg{width:15px;height:15px}
+.mx-item .mi-tx{min-width:0}
+.mx-item .mi-tx b{display:block;font-size:.76rem;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-item .mi-tx span{display:block;font-size:.66rem;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-item .mi-tx .pr{color:var(--accent);font-weight:700}
+.mx-foot{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;border-top:1px solid var(--glB);background:var(--surface2)}
+.mx-foot a{font-size:.72rem;font-weight:700;color:var(--text2);padding:7px 12px;border-radius:100px;border:1px solid var(--glB);transition:all .2s}
+.mx-foot a:hover{color:var(--accent);border-color:var(--accent);background:var(--accentS)}
+.mx-foot a.mx-foot-all{color:var(--accent);border-color:var(--accentG);background:var(--accentS)}
+@media(max-width:1240px){.megaX{width:min(820px,94vw)}.mx-body{grid-template-columns:220px 1fr}}
+/* interactive category dropdown in the Explore header */
+.cat-dd{position:relative}
+.cat-dd-btn{display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border-radius:13px;background:var(--surface);border:1px solid var(--glB);color:var(--text);font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;transition:all .25s}
+.cat-dd-btn .cdd-dot{width:9px;height:9px;border-radius:50%;background:var(--tc,var(--accent));box-shadow:0 0 0 3px color-mix(in srgb,var(--tc,var(--accent)) 22%,transparent)}
+.cat-dd-btn .cdd-chev{width:14px;height:14px;transition:transform .3s;color:var(--text3)}
+.cat-dd.open .cat-dd-btn .cdd-chev{transform:rotate(180deg)}
+.cat-dd-btn:hover{border-color:var(--accent)}
+.cat-dd-menu{position:absolute;top:calc(100% + 8px);right:0;z-index:45;width:300px;max-height:0;overflow:hidden;background:var(--surface);border:1px solid var(--glB);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.4);opacity:0;visibility:hidden;transition:all .32s cubic-bezier(.16,1,.3,1)}
+.cat-dd.open .cat-dd-menu{max-height:min(62vh,460px);overflow-y:auto;opacity:1;visibility:visible;padding:8px}
+.cat-opt{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:11px;cursor:pointer;color:var(--text2);font-weight:600;font-size:.84rem;transition:all .2s}
+.cat-opt .co-ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:var(--tc,var(--accent));background:color-mix(in srgb,var(--tc,var(--accent)) 15%,transparent);flex-shrink:0}
+.cat-opt .co-ic svg{width:15px;height:15px}
+.cat-opt .co-c{margin-left:auto;font-size:.7rem;color:var(--text3);font-weight:700}
+.cat-opt:hover,.cat-opt.on{background:color-mix(in srgb,var(--tc,var(--accent)) 13%,var(--surface2));color:var(--text)}
+.cat-dd-menu .co-page{display:flex;align-items:center;justify-content:center;gap:6px;margin:6px 4px 2px;padding:11px;border-radius:11px;font-size:.76rem;font-weight:700;color:var(--accent);border:1px dashed var(--accentG)}
+.cat-dd-menu .co-page:hover{background:var(--accentS)}
+@media(max-width:640px){.cat-dd-menu{width:min(84vw,300px)}}
 /* full params in modal */
 .dm-panel{border:1px solid var(--glB);border-radius:13px;margin-bottom:9px;overflow:hidden;background:var(--surface2)}
 .dm-panel>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:.86rem;font-weight:700;color:var(--text)}
@@ -1230,6 +1404,32 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
 .va-row .vr-pr{font-weight:800;color:var(--text);font-size:.9rem}
 .va-row button{font:inherit;font-weight:700;font-size:.74rem;padding:9px 12px;border-radius:10px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;white-space:nowrap}
 .va-row button:hover{background:var(--accent);color:#fff}
+/* ═══ MOBILE POLISH v4.6 — targeted small-screen fixes ═══ */
+@media(max-width:640px){
+  /* Explore header: stack title above controls, kill the eyebrow "blob" */
+  #shop .shop-h{flex-direction:column;align-items:stretch;gap:13px}
+  #shop .sh-l{align-items:flex-start}
+  .shop-eyebrow{white-space:nowrap;font-size:.56rem;letter-spacing:1px;padding:5px 11px;max-width:100%}
+  #shop .shop-h h3{font-size:clamp(1.5rem,7vw,1.9rem)}
+  #shop .pk-ctrls{width:100%;display:flex;gap:8px;align-items:center}
+  #shop .cat-dd{flex:1}
+  #shop .cat-dd-btn{width:100%;justify-content:space-between}
+  #shop .cat-dd-menu{left:0;right:auto;width:100%}
+  /* Finder: comfortable spacing + full-width actions on phones */
+  .rec-box{padding:22px 17px}
+  .rec-result{padding:20px 16px}
+  .rec-result h3{font-size:1.32rem}
+  .rr-btns{gap:8px}.rr-btns .rr-b1,.rr-btns .rr-b2,.rr-btns .rr-b3{flex:1;text-align:center;padding:12px 8px}
+  /* Sticky bottom CTA must never hide the last section's content */
+  #connect{padding-bottom:96px}
+  .wa{bottom:86px}
+  /* Tighten the vertical rhythm so the page isn't endless */
+  .snap{padding:50px 0}
+}
+@media(max-width:400px){
+  .shop-eyebrow{font-size:.5rem;letter-spacing:.5px}
+  .rr-alt .ra-n{font-size:.78rem}
+}
 </style>
 </head>
 <body>
@@ -1275,24 +1475,10 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
 <nav class="nav" id="nav"><div class="w nav-in">
   <a href="#" class="logo"><div class="logo-m pulse"><svg class="logo-atom" viewBox="0 0 200 200" fill="none" aria-hidden="true"><g><ellipse class="la-orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="la-e e1" cx="0" cy="0" r="15"/></g><g transform="rotate(60 100 100)"><ellipse class="la-orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="la-e e2" cx="0" cy="0" r="15"/></g><g transform="rotate(120 100 100)"><ellipse class="la-orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="la-e e3" cx="0" cy="0" r="15"/></g><circle class="la-nuc" cx="100" cy="100" r="20"/></svg></div><div class="logo-t"><span>Bio<em>city</em></span><small>Healthcare</small></div></a>
   <div class="nav-links">
-    <div class="nl-item"><button class="nl-btn">Checkups <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-      <div class="mega"><div class="mega-g c2">
-        <a class="mega-a" href="pages/preventive-health-checkup.html"><span class="mega-ic"><svg class="ic"><use href="#i-shield"/></svg></span><span class="mega-tx"><b>Preventive Health Checkup</b><span>Age-wise plans for the family</span></span></a>
-        <a class="mega-a" href="pages/full-body-checkup.html"><span class="mega-ic"><svg class="ic"><use href="#i-activity"/></svg></span><span class="mega-tx"><b>Full Body Checkup</b><span>80+ params · from <span class="pr">₹999</span></span></span></a>
-        <a class="mega-a" href="pages/offers.html"><span class="mega-ic"><svg class="ic"><use href="#i-award"/></svg></span><span class="mega-tx"><b>Offers &amp; Packages</b><span>Up to 60% off</span></span></a>
-        <a class="mega-a" href="pages/bmi-calculator.html"><span class="mega-ic"><svg class="ic"><use href="#i-scale"/></svg></span><span class="mega-tx"><b>BMI Calculator</b><span>Free health tool</span></span></a>
-      </div></div>
-    </div>
-    <div class="nl-item"><button class="nl-btn">Lab Tests <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-      <div class="mega"><div class="mega-g c2">
-        <a class="mega-a" href="pages/test-cbc.html"><span class="mega-ic"><svg class="ic"><use href="#i-droplet"/></svg></span><span class="mega-tx"><b>Complete Blood Count</b><span>CBC · 24 params · <span class="pr">₹299</span></span></span></a>
-        <a class="mega-a" href="pages/test-lipid-profile.html"><span class="mega-ic"><svg class="ic"><use href="#i-heart"/></svg></span><span class="mega-tx"><b>Lipid Profile</b><span>Cholesterol · <span class="pr">₹499</span></span></span></a>
-        <a class="mega-a" href="pages/test-thyroid.html"><span class="mega-ic"><svg class="ic"><use href="#i-gauge"/></svg></span><span class="mega-tx"><b>Thyroid Package</b><span>T3·T4·TSH · <span class="pr">₹899</span></span></span></a>
-        <a class="mega-a" href="pages/test-blood-sugar.html"><span class="mega-ic"><svg class="ic"><use href="#i-droplet"/></svg></span><span class="mega-tx"><b>Blood Sugar</b><span>Fasting/PP · <span class="pr">₹99</span></span></span></a>
-        <a class="mega-a" href="pages/test-vitamin-d.html"><span class="mega-ic"><svg class="ic"><use href="#i-moon"/></svg></span><span class="mega-tx"><b>Vitamin D</b><span>25-OH · <span class="pr">₹699</span></span></span></a>
-        <a class="mega-a" href="pages/test-haemoglobin.html"><span class="mega-ic"><svg class="ic"><use href="#i-activity"/></svg></span><span class="mega-tx"><b>Haemoglobin (Hb)</b><span>Anaemia · <span class="pr">₹199</span></span></span></a>
-        <a class="mega-a" href="pages/test-kidney-kft.html"><span class="mega-ic"><svg class="ic"><use href="#i-scan"/></svg></span><span class="mega-tx"><b>Kidney (KFT)</b><span>Renal panel · <span class="pr">₹499</span></span></span></a>
-      </div></div>
+    <div class="nl-item nl-wide"><button class="nl-btn">Checkups &amp; Tests <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="mega megaX" id="megaCk">
+        <div class="mx-body"><div class="mx-rail"></div><div class="mx-panel">Loading catalog…</div></div>
+      </div>
     </div>
     <div class="nl-item"><button class="nl-btn">Company <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
       <div class="mega"><div class="mega-g c2">
@@ -1304,7 +1490,6 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
         <a class="mega-a" href="pages/contact.html"><span class="mega-ic"><svg class="ic"><use href="#i-phone"/></svg></span><span class="mega-tx"><b>Contact Us</b><span>Talk to our team</span></span></a>
       </div></div>
     </div>
-    <a class="nl-btn" href="#packages">Packages</a>
     <a class="nl-btn" href="pages/blog.html">Blog</a>
   </div>
   <div class="nr">
@@ -1315,35 +1500,37 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
   </div>
 </div></nav>
 <div class="mmenu" id="mmenu">
-  <span class="mm-h">Explore</span>
-  <a href="#how" onclick="closeMenu()">Process</a><a href="#recommender" onclick="closeMenu()">Find My Test</a><a href="#packages" onclick="closeMenu()">Packages</a><a href="#reviews" onclick="closeMenu()">Reviews</a>
-  <span class="mm-h">Checkups &amp; Tests</span>
-  <a href="pages/full-body-checkup.html">Full Body Checkup</a><a href="pages/preventive-health-checkup.html">Preventive Checkup</a><a href="pages/test-cbc.html">CBC · Thyroid · Vitamin D</a><a href="pages/offers.html">Offers &amp; Packages</a><a href="pages/bmi-calculator.html">BMI Calculator</a>
-  <span class="mm-h">Company</span>
-  <a href="pages/about-us.html">About Us</a><a href="pages/certifications.html">Certifications</a><a href="pages/awards.html">Awards</a><a href="pages/media-coverage.html">Media Coverage</a><a href="pages/social-activities.html">Social Activities</a><a href="pages/blog.html">Blog</a><a href="pages/contact.html">Contact Us</a>
-  <a href="#" onclick="closeMenu();openModal();return false" style="color:var(--accent);margin-top:10px">Book Now →</a>
+  <div class="mm-scroll">
+    <span class="mm-lbl">Browse checkups &amp; tests</span>
+    <div class="mm-browse" id="mmBrowse"></div>
+    <div class="mm-sec">
+      <span class="mm-lbl">Quick links</span>
+      <div class="mm-quick">
+        <a href="#recommender" onclick="closeMenu()"><svg class="ic"><use href="#i-activity"/></svg>Find My Test</a>
+        <a href="pages/full-body-checkup.html"><svg class="ic"><use href="#i-shield"/></svg>Full Body Checkup</a>
+        <a href="pages/offers.html"><svg class="ic"><use href="#i-award"/></svg>Offers &amp; Packages</a>
+        <a href="#reviews" onclick="closeMenu()"><svg class="ic"><use href="#i-star"/></svg>Reviews</a>
+      </div>
+    </div>
+    <details class="mm-comp">
+      <summary><span class="mm-lbl">Company</span><svg class="mmco-chev ic"><use href="#i-arrow"/></svg></summary>
+      <div class="mm-complist">
+        <a href="pages/about-us.html">About Us</a><a href="pages/certifications.html">Certifications</a><a href="pages/awards.html">Awards</a><a href="pages/media-coverage.html">Media Coverage</a><a href="pages/social-activities.html">Social Activities</a><a href="pages/blog.html">Blog</a><a href="pages/contact.html">Contact Us</a>
+      </div>
+    </details>
+  </div>
+  <a class="mm-cta" href="#" onclick="closeMenu();openModal();return false"><svg class="ic"><use href="#i-calendar"/></svg>Book Home Visit</a>
 </div>
 
-<!-- HOME HERO — approved Draft 2 (full-bleed image with text overlay) -->
-<section class="h2hero" id="home-hero">
-  <div class="h2-bg" id="heroSlides">
-    <div class="h2-slide on"><img src="assets/lab/lab-interior.jpg" alt="Biocity NABL-accredited laboratory" fetchpriority="high"></div>
-    <div class="h2-slide"><img src="assets/lab/phlebotomy.png" alt="Certified phlebotomist at home" loading="lazy"></div>
-    <div class="h2-slide"><img src="assets/welfare/welfare1.jpg" alt="Biocity community health camp" loading="lazy"></div>
-    <div class="h2-slide"><img src="assets/social/covid-distribution-01.jpg" alt="Community health drive" loading="lazy"></div>
-    <div class="h2-slide"><img src="assets/welfare/s07.jpg" alt="Preventive screening camp" loading="lazy"></div>
-    <div class="h2-slide"><img src="assets/social/inferno-fitness-02.jpg" alt="Wellness & fitness screening" loading="lazy"></div>
-    <div class="h2-slide"><img src="assets/lab/about-tp.jpg" alt="Biocity trained phlebotomist" loading="lazy"></div>
-  </div>
-  <div class="h2-ov"></div>
-  <div class="h2-dots" id="heroDots"></div>
-  <div class="w h2-in">
-    <div class="h2-badges">
-      <span class="h2-badge"><svg class="ic"><use href="#i-shield"/></svg>NABL Accredited</span>
-      <span class="h2-badge"><svg class="ic"><use href="#i-home"/></svg>Free Home Collection</span>
-      <span class="h2-badge"><svg class="ic"><use href="#i-clock"/></svg>Reports in 24 Hrs</span>
-    </div>
-    <h1 class="h2-title">Health checkups at home,<br><span class="grad">done right.</span></h1>
+<!-- HOME HERO — informative, image-free landing (v4.3) -->
+<section class="hero" id="hero-main">
+<div class="hero-atom" aria-hidden="true"><svg class="atom-svg" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="flaskFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs><g><ellipse class="orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="electron e1" cx="0" cy="0" r="7"/></g><g transform="rotate(60 100 100)"><ellipse class="orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="electron e2" cx="0" cy="0" r="7"/></g><g transform="rotate(120 100 100)"><ellipse class="orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="electron e3" cx="0" cy="0" r="7"/></g><g class="flask"><path class="flask-liquid" d="M84.8,116 L115.2,116 L120,130 Q120,134 116,134 L84,134 Q80,134 80,130 Z"/><path class="flask-body" d="M92,79 L92,100 L80,130 Q80,134 84,134 L116,134 Q120,134 120,130 L108,100 L108,79"/><path class="flask-neck" d="M89,79 L111,79"/><circle class="bub b1" cx="96" cy="128" r="2.4"/><circle class="bub b2" cx="105" cy="130" r="1.8"/><circle class="bub b3" cx="100" cy="126" r="1.5"/></g></svg></div>
+<div class="hero-ecg"><svg viewBox="0 0 1200 100" preserveAspectRatio="none"><path class="ecg-base" fill="none" d="M0,55 L150,55 L168,55 L178,30 L188,80 L200,18 L212,62 L228,55 L400,55 L418,55 L428,30 L438,80 L450,18 L462,62 L478,55 L650,55 L668,55 L678,30 L688,80 L700,18 L712,62 L728,55 L900,55 L918,55 L928,30 L938,80 L950,18 L962,62 L978,55 L1200,55"/><path class="ecg-run" pathLength="1" fill="none" d="M0,55 L150,55 L168,55 L178,30 L188,80 L200,18 L212,62 L228,55 L400,55 L418,55 L428,30 L438,80 L450,18 L462,62 L478,55 L650,55 L668,55 L678,30 L688,80 L700,18 L712,62 L728,55 L900,55 L918,55 L928,30 L938,80 L950,18 L962,62 L978,55 L1200,55"/></svg></div>
+<div class="w hero-g">
+  <div class="hero-c">
+    <div class="hero-badge"><span class="dot"></span>NABL Accredited &bull; ISO 15189:2022 Certified</div>
+    <h2 class="display">Health checks that<br><span class="grad">come to you.</span><span class="dm">Not the other way around.</span></h2>
+    <p class="hero-p">Full body health checkups from your couch. 80+ parameters, NABL-certified accuracy, reports within 24 hours. Trusted by 50 lakh+ families across 60+ cities.</p>
     <div class="osearch in-hero" id="osearch">
       <div class="os-in">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -1355,32 +1542,6 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
       </div>
       <div class="os-drop" id="osDrop"></div>
     </div>
-    <div class="h2-proof">
-      <span><svg class="ic" style="fill:#fbbf24;stroke:none"><use href="#i-star"/></svg>4.9/5 — 3,300+ Reviews</span>
-      <span><svg class="ic"><use href="#i-shield"/></svg>100% Hygienic &amp; Safe</span>
-    </div>
-  </div>
-  <a href="#hero-main" class="h2-scroll" aria-label="Scroll to packages">Scroll<svg class="ic"><use href="#i-chevron"/></svg></a>
-</section>
-
-<!-- EXPLORE — tabbed categories + curated auto-slide strip (v4.1) -->
-<section class="shop" id="shop">
-  <div class="w">
-    <div class="shop-h"><h3>Explore checkups &amp; tests</h3><span class="cnt" id="pkCnt"></span></div>
-    <div class="tabbar" id="tabbar"></div>
-    <div class="pk-row"><div class="pk-track" id="pkTrack"></div></div>
-  </div>
-</section>
-
-<!-- HERO -->
-<section class="hero" id="hero-main">
-<div class="hero-atom" aria-hidden="true"><svg class="atom-svg" viewBox="0 0 200 200" fill="none"><defs><linearGradient id="flaskFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs><g><ellipse class="orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="electron e1" cx="0" cy="0" r="7"/></g><g transform="rotate(60 100 100)"><ellipse class="orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="electron e2" cx="0" cy="0" r="7"/></g><g transform="rotate(120 100 100)"><ellipse class="orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="electron e3" cx="0" cy="0" r="7"/></g><g class="flask"><path class="flask-liquid" d="M84.8,116 L115.2,116 L120,130 Q120,134 116,134 L84,134 Q80,134 80,130 Z"/><path class="flask-body" d="M92,79 L92,100 L80,130 Q80,134 84,134 L116,134 Q120,134 120,130 L108,100 L108,79"/><path class="flask-neck" d="M89,79 L111,79"/><circle class="bub b1" cx="96" cy="128" r="2.4"/><circle class="bub b2" cx="105" cy="130" r="1.8"/><circle class="bub b3" cx="100" cy="126" r="1.5"/></g></svg></div>
-<div class="hero-ecg"><svg viewBox="0 0 1200 100" preserveAspectRatio="none"><path class="ecg-base" fill="none" d="M0,55 L150,55 L168,55 L178,30 L188,80 L200,18 L212,62 L228,55 L400,55 L418,55 L428,30 L438,80 L450,18 L462,62 L478,55 L650,55 L668,55 L678,30 L688,80 L700,18 L712,62 L728,55 L900,55 L918,55 L928,30 L938,80 L950,18 L962,62 L978,55 L1200,55"/><path class="ecg-run" pathLength="1" fill="none" d="M0,55 L150,55 L168,55 L178,30 L188,80 L200,18 L212,62 L228,55 L400,55 L418,55 L428,30 L438,80 L450,18 L462,62 L478,55 L650,55 L668,55 L678,30 L688,80 L700,18 L712,62 L728,55 L900,55 L918,55 L928,30 L938,80 L950,18 L962,62 L978,55 L1200,55"/></svg></div>
-<div class="w hero-g">
-  <div class="hero-c">
-    <div class="hero-badge"><span class="dot"></span>NABL Accredited &bull; ISO 15189:2022 Certified</div>
-    <h2 class="display">Health checks that<br><span class="grad">come to you.</span><span class="dm">Not the other way around.</span></h2>
-    <p class="hero-p">Full body health checkups from your couch. 80+ parameters, NABL-certified accuracy, reports within 24 hours. Trusted by 50 lakh+ families across 60+ cities.</p>
     <div class="hero-btns"><a href="#recommender" class="btn btn-f">Find My Test <svg class="ic"><use href="#i-arrow"/></svg></a><a href="tel:+918860606141" class="btn btn-g"><svg class="ic"><use href="#i-phone"/></svg>Call Us Free</a></div>
     <div class="hero-proof"><span><svg class="ic" style="fill:var(--accent);stroke:none"><use href="#i-star"/></svg>4.9/5 — 3,300+ Reviews</span><span><svg class="ic"><use href="#i-shield"/></svg>100% Hygienic &amp; Safe</span></div>
   </div>
@@ -1451,6 +1612,88 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
 <div class="scroll-h"><span>Scroll</span><svg class="ic"><use href="#i-chevron"/></svg></div>
 </section>
 
+<!-- EXPLORE — tabbed categories + curated auto-slide strip (v4.1) -->
+<section class="shop" id="shop">
+  <div class="w">
+    <div class="shop-h">
+      <div class="sh-l">
+        <span class="shop-eyebrow"><span class="pulse-dot"></span>The highlight · book in 60 seconds</span>
+        <h3>Explore checkups &amp; tests</h3>
+        <span class="cnt" id="pkCnt"></span>
+      </div>
+      <div class="pk-ctrls">
+        <div class="cat-dd" id="catDD">
+          <button class="cat-dd-btn" id="catDDBtn" type="button" aria-label="Browse by category"><span class="cdd-dot"></span><span class="cdd-lab">Popular</span><svg class="cdd-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="cat-dd-menu" id="catDDMenu"></div>
+        </div>
+        <button class="pk-nav" id="pkPrev" type="button" aria-label="Scroll left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button class="pk-nav" id="pkNext" type="button" aria-label="Scroll right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="tabbar" id="tabbar"></div>
+    <div class="pk-row"><div class="pk-track" id="pkTrack"></div></div>
+  </div>
+</section>
+
+<!-- SMART FINDER — "Not sure which test?" moved up as the highlight below the packages -->
+<section class="sec snap rec" id="recommender"><div class="w">
+  <div class="head sr sr-u">
+    <span class="shop-eyebrow"><span class="pulse-dot"></span>Smart health finder</span>
+    <h2>Not sure which test?<br><span class="grad">We'll find it for you.</span></h2>
+    <p class="sub" style="margin-top:14px">Answer three quick questions and our engine matches you to the right checkup — plus add-ons for every concern you pick, from a catalog of 489 tests.</p>
+    <div class="rec-stats">
+      <span class="rec-stat"><svg class="ic"><use href="#i-activity"/></svg><b>489</b> lab tests indexed</span>
+      <span class="rec-stat"><svg class="ic"><use href="#i-shield"/></svg><b>NABL</b>-accredited labs</span>
+      <span class="rec-stat"><svg class="ic"><use href="#i-clock"/></svg>reports in <b>24 hrs</b></span>
+      <span class="rec-stat"><svg class="ic"><use href="#i-home"/></svg>free <b>home visit</b></span>
+    </div>
+  </div>
+  <div class="rec-box sr sr-s">
+    <div class="rec-prog"><span class="rp-fill" id="recProg"></span></div>
+    <div class="rec-step">
+      <div class="rec-step-lbl"><span class="rec-step-n">1</span>What's your age group?</div>
+      <div class="rec-ages" id="recAges">
+        <div class="rec-age" data-age="0">Under 25</div>
+        <div class="rec-age" data-age="1">25–35</div>
+        <div class="rec-age" data-age="2">35–45</div>
+        <div class="rec-age" data-age="2">45–60</div>
+        <div class="rec-age" data-age="3">60+</div>
+      </div>
+    </div>
+    <div class="rec-step">
+      <div class="rec-step-lbl"><span class="rec-step-n">2</span>Who is this checkup for?</div>
+      <div class="rec-sex" id="recSex">
+        <div class="rec-sxopt" data-sex="f"><svg class="ce ic"><use href="#i-usercheck"/></svg>Woman</div>
+        <div class="rec-sxopt" data-sex="m"><svg class="ce ic"><use href="#i-usercheck"/></svg>Man</div>
+        <div class="rec-sxopt" data-sex=""><svg class="ce ic"><use href="#i-activity"/></svg>Skip</div>
+      </div>
+    </div>
+    <div class="rec-step">
+      <div class="rec-step-lbl"><span class="rec-step-n">3</span>Any health concerns? (select all that apply)</div>
+      <div class="rec-chips" id="recChips">
+        <div class="rec-chip" data-c="0"><svg class="ce ic"><use href="#i-activity"/></svg>General wellness</div>
+        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-droplet"/></svg>Diabetes / Sugar</div>
+        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-heart"/></svg>Heart / Cholesterol</div>
+        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-gauge"/></svg>Thyroid</div>
+        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-moon"/></svg>Fatigue / Weakness</div>
+        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-bone"/></svg>Vitamin / Bone</div>
+        <div class="rec-chip" data-c="2"><svg class="ce ic"><use href="#i-scale"/></svg>Hormonal / PCOS</div>
+        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-shield"/></svg>Liver / Kidney</div>
+        <div class="rec-chip" data-c="3"><svg class="ce ic"><use href="#i-scan"/></svg>Cancer screening</div>
+      </div>
+    </div>
+    <button class="rec-go" onclick="recommend()">Get My Recommendation <svg class="ic"><use href="#i-arrow"/></svg></button>
+    <div class="rec-result" id="recRes">
+      <div class="rec-result-top"><span class="td" style="width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block"></span>Your personalized match</div>
+      <h3 id="rrName">—</h3><div class="rr-pr" id="rrPrice">—</div>
+      <p id="rrWhy">—</p>
+      <div class="rr-covers" id="rrCovers"></div>
+      <div class="rr-btns"><a href="#" class="rr-b1" id="rrView">View full details →</a><button class="rr-b3" id="rrAdd" onclick="recAddPrimary()">Add to Cart</button><a href="#" class="rr-b2" onclick="openModal();return false">Book This</a></div>
+      <div class="rr-alts" id="rrAlts"></div>
+    </div>
+  </div>
+</div></section>
+
 <!-- MARQUEE — trusted-by, right under the hero for instant social proof -->
 <section class="marq"><div class="w"><div class="marq-lbl">Trusted by India's leading companies</div></div><div style="overflow:hidden"><div class="marq-t"><span class="pi">Airtel</span><span class="pi">Kotak Bank</span><span class="pi">Yes Bank</span><span class="pi">Delhivery</span><span class="pi">Star Health</span><span class="pi">HDFC Ergo</span><span class="pi">SBI Life</span><span class="pi">Max Healthcare</span><span class="pi">Airtel</span><span class="pi">Kotak Bank</span><span class="pi">Yes Bank</span><span class="pi">Delhivery</span><span class="pi">Star Health</span><span class="pi">HDFC Ergo</span><span class="pi">SBI Life</span><span class="pi">Max Healthcare</span></div></div></section>
 
@@ -1498,42 +1741,6 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
 </div></section>
 
 <!-- RECOMMENDER -->
-<section class="sec snap rec" id="recommender"><div class="w">
-  <div class="head sr sr-u"><div class="tag"><span class="td"></span>Personalized</div><h2>Not sure which test?<br><span class="grad">We'll find it for you.</span></h2><p class="sub" style="margin-top:14px">Answer 2 quick questions — get an instant, personalized recommendation.</p></div>
-  <div class="rec-box sr sr-s">
-    <div class="rec-step">
-      <div class="rec-step-lbl"><span class="rec-step-n">1</span>What's your age group?</div>
-      <div class="rec-ages" id="recAges">
-        <div class="rec-age" data-age="0">Under 25</div>
-        <div class="rec-age" data-age="1">25–35</div>
-        <div class="rec-age" data-age="2">35–45</div>
-        <div class="rec-age" data-age="2">45–60</div>
-        <div class="rec-age" data-age="3">60+</div>
-      </div>
-    </div>
-    <div class="rec-step">
-      <div class="rec-step-lbl"><span class="rec-step-n">2</span>Any health concerns? (select all that apply)</div>
-      <div class="rec-chips" id="recChips">
-        <div class="rec-chip" data-c="0"><svg class="ce ic"><use href="#i-activity"/></svg>General wellness</div>
-        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-droplet"/></svg>Diabetes / Sugar</div>
-        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-heart"/></svg>Heart / Cholesterol</div>
-        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-gauge"/></svg>Thyroid</div>
-        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-moon"/></svg>Fatigue / Weakness</div>
-        <div class="rec-chip" data-c="1"><svg class="ce ic"><use href="#i-bone"/></svg>Vitamin / Bone</div>
-        <div class="rec-chip" data-c="2"><svg class="ce ic"><use href="#i-scale"/></svg>Hormonal</div>
-        <div class="rec-chip" data-c="3"><svg class="ce ic"><use href="#i-scan"/></svg>Cancer screening</div>
-      </div>
-    </div>
-    <button class="rec-go" onclick="recommend()">Get My Recommendation <svg class="ic"><use href="#i-arrow"/></svg></button>
-    <div class="rec-result" id="recRes">
-      <div class="rec-result-top"><span class="td" style="width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block"></span>Recommended for you</div>
-      <h3 id="rrName">—</h3><div class="rr-pr" id="rrPrice">—</div>
-      <p id="rrWhy">—</p>
-      <div class="rr-btns"><a href="#" class="rr-b1" onclick="openModal();return false">Book This Package</a><a href="#compare" class="rr-b2">Compare All →</a></div>
-    </div>
-  </div>
-</div></section>
-
 <!-- PACKAGES -->
 <section class="sec snap pkgs" id="packages"><div class="w">
   <div class="head sr sr-u"><div class="tag"><span class="td"></span>Health Packages</div><h2>Invest in <span class="grad">knowing</span>,<br>not guessing.</h2><p class="sub" style="margin-top:14px">Free home collection. NABL-certified. Digital reports. Expert consult.</p></div>
@@ -1787,7 +1994,7 @@ addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(onScroll);tick
 function toggleTheme(){const n=docEl.getAttribute('data-theme')==='dark'?'light':'dark';docEl.setAttribute('data-theme',n);document.getElementById('sunI').style.display=n==='light'?'block':'none';document.getElementById('moonI').style.display=n==='dark'?'block':'none';localStorage.setItem('theme',n)}
 (()=>{const s=localStorage.getItem('theme');if(s){docEl.setAttribute('data-theme',s);document.getElementById('sunI').style.display=s==='light'?'block':'none';document.getElementById('moonI').style.display=s==='dark'?'block':'none'}})();
 function toggleMenu(){const m=document.getElementById('mmenu');document.getElementById('burger').classList.toggle('on');m.classList.toggle('on');document.body.style.overflow=m.classList.contains('on')?'hidden':''}
-function closeMenu(){document.getElementById('burger').classList.remove('on');document.getElementById('mmenu').classList.remove('on');document.body.style.overflow=''}
+function closeMenu(){document.getElementById('burger').classList.remove('on');document.getElementById('mmenu').classList.remove('on');document.body.style.overflow='';if(window.resetMobileNav)setTimeout(window.resetMobileNav,300)}
 const PKG_INFO={
   'Essential':{price:'₹999',tests:['Complete Blood Count — 24 params','Lipid Profile — cholesterol, HDL, LDL','Fasting Blood Sugar','Thyroid — TSH','Liver & Kidney basics','Urine routine'],blog:'pages/blog.html'},
   'Comprehensive':{price:'₹1,799',tests:['Everything in Essential','HbA1c — diabetes control','Vitamin D + B12','Full Thyroid — T3, T4, TSH','Complete Liver & Kidney (21)','Free expert consult'],blog:'pages/blog-vitamin-d-deficiency.html'},
@@ -1815,24 +2022,54 @@ function submitForm(e){e.preventDefault();const b=document.getElementById('mGoBt
 function togFaq(btn){const it=btn.closest('.faq-item'),w=it.classList.contains('on');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('on');i.querySelector('.faq-a').style.maxHeight=null});if(!w){it.classList.add('on');const a=it.querySelector('.faq-a');a.style.maxHeight=a.scrollHeight+'px'}}
 function calcBMI(){const h=+document.getElementById('bmiH').value,w=+document.getElementById('bmiW').value,r=document.getElementById('bmiRes');if(!h||!w||h<50||w<10){r.textContent='Enter valid height and weight';r.className='on';return}const bmi=(w/((h/100)**2)).toFixed(1);let cat,clr;if(bmi<18.5){cat='Underweight';clr='#60a5fa'}else if(bmi<25){cat='Normal';clr='var(--accent)'}else if(bmi<30){cat='Overweight';clr='#f59e0b'}else{cat='Obese';clr='#ef4444'}r.innerHTML='BMI: <span style="color:'+clr+';font-size:1.4rem;font-family:Fraunces,serif">'+bmi+'</span> — <span style="color:'+clr+'">'+cat+'</span><br><small style="opacity:.4;font-weight:300">Book a full checkup for your complete picture</small>';r.className='on'}
 /* Recommender */
-let recAge=null;const recC=new Set();
-document.querySelectorAll('#recAges .rec-age').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('#recAges .rec-age').forEach(x=>x.classList.remove('on'));el.classList.add('on');recAge=+el.dataset.age}));
-document.querySelectorAll('#recChips .rec-chip').forEach(el=>el.addEventListener('click',()=>{el.classList.toggle('on');const k=el.textContent.trim();if(el.classList.contains('on'))recC.add(k);else recC.delete(k)}));
-const PKG=[{n:'Essential',p:'₹999',w:'Perfect for a routine annual check when you\u2019re young and symptom-free. Covers all the fundamentals — blood count, cholesterol, liver, kidney, sugar and thyroid basics.'},{n:'Comprehensive',p:'₹1,799',w:'Our best-seller and the ideal fit for you. Adds full thyroid, HbA1c diabetes tracking, Vitamin D & B12, and a bone profile with a free expert consultation.'},{n:'Advanced',p:'₹2,999',w:'An executive-grade screening matched to your concerns. Includes cancer markers, a hormone panel, arthritis and STD screening on top of everything comprehensive.'},{n:'Platinum',p:'₹5,499',w:'The most complete audit we offer — recommended given your profile. Adds cardiac risk markers, a full vitamin panel, electrolytes and priority support with a diet plan.'}];
+let recAge=null,recSex=null;const recC=new Set();
+const recEsc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function recProg(){const done=(recAge!==null?1:0)+(recSex!==null?1:0)+(document.querySelectorAll('#recChips .rec-chip.on').length?1:0);const f=document.getElementById('recProg');if(f)f.style.width=Math.round(done/3*100)+'%';}
+document.querySelectorAll('#recAges .rec-age').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('#recAges .rec-age').forEach(x=>x.classList.remove('on'));el.classList.add('on');recAge=+el.dataset.age;recProg()}));
+document.querySelectorAll('#recSex .rec-sxopt').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('#recSex .rec-sxopt').forEach(x=>x.classList.remove('on'));el.classList.add('on');recSex=el.dataset.sex;recProg()}));
+document.querySelectorAll('#recChips .rec-chip').forEach(el=>el.addEventListener('click',()=>{el.classList.toggle('on');const k=el.textContent.trim();if(el.classList.contains('on'))recC.add(k);else recC.delete(k);recProg()}));
+const CONCERN_KW={'Diabetes / Sugar':/diab|sugar|hba1c|glucose/i,'Heart / Cholesterol':/heart|cardiac|lipid|cholesterol/i,'Thyroid':/thyroid|tsh|\bt3\b|\bt4\b/i,'Fatigue / Weakness':/vitamin|iron|anaemia|anemia|\bb12\b|hemogram|\bcbc\b|complete blood/i,'Vitamin / Bone':/vitamin|bone|calcium|\bd3\b|arthrit/i,'Hormonal / PCOS':/hormon|testoster|estrogen|pcod|pcos|prolactin/i,'Liver / Kidney':/liver|kidney|renal|\blft\b|\bkft\b|creatinine/i,'Cancer screening':/cancer|tumou?r|onco|marker|\bpsa\b|\bcea\b/i,'General wellness':/full body|comprehensive|wellness/i};
+let recPrimaryNum=null;
+function recAddPrimary(){if(recPrimaryNum!=null&&window.Detail&&Detail.addPkg)Detail.addPkg(recPrimaryNum);}
 function recommend(){
-  let tier=0;const chips=document.querySelectorAll('#recChips .rec-chip.on');
+  let tier=0;const chips=[...document.querySelectorAll('#recChips .rec-chip.on')];
   if(recAge===null&&chips.length===0)recAge=1;
   if(recAge!==null)tier=recAge;
   chips.forEach(c=>{const v=+c.dataset.c;if(v>tier)tier=v});
-  if(chips.length>=3&&tier<2)tier=2;
-  if(tier>3)tier=3;
-  const p=PKG[tier];
-  document.getElementById('rrName').textContent=p.n+' Full Body Checkup';
-  document.getElementById('rrPrice').textContent=p.p;
-  document.getElementById('rrWhy').textContent=p.w;
-  const box=document.getElementById('recRes');box.classList.add('on');
-  box.scrollIntoView({behavior:'smooth',block:'center'});
-  if(window.gtag)gtag('event','recommend',{package:p.n});
+  if(chips.length>=3&&tier<2)tier=2;if(tier>3)tier=3;
+  const concerns=chips.map(c=>c.textContent.trim());
+  const box=document.getElementById('recRes');
+  const C=window.CATALOG;
+  if(!C||!C.PKGS||!C.PKGS.length){
+    document.getElementById('rrName').textContent='Comprehensive Full Body Checkup';
+    document.getElementById('rrPrice').textContent='₹1,459';
+    document.getElementById('rrWhy').textContent='Our best-seller — a complete annual screen covering blood count, sugar, cholesterol, thyroid, liver, kidney and vitamins.';
+    box.classList.add('on');box.scrollIntoView({behavior:'smooth',block:'center'});return;
+  }
+  const {PKGS,inr,priceInfo}=C;
+  const prev=PKGS.filter(p=>p.section_id==1).sort((a,b)=>a.offer_price-b.offer_price);
+  const pool=prev.length?prev:PKGS.slice().sort((a,b)=>a.offer_price-b.offer_price);
+  const primary=pool[Math.min(tier,pool.length-1)]||pool[pool.length-1];
+  recPrimaryNum=primary.num;
+  const ageTxt=['under 25','in the 25–35 range','35–60','60+'][Math.min(tier,3)];
+  let why='Matched to your age ('+ageTxt+')';
+  if(concerns.length)why+=' and your focus on '+concerns.slice(0,3).join(', ').toLowerCase();
+  why+='. This '+primary.name.toLowerCase()+' covers '+(primary.claimed_tests||(primary.components||[]).length+' parameters')+' with a free home visit and reports in '+C.reportsWithin(primary.offer_price)+'.';
+  const {was,off}=priceInfo(primary.offer_price,primary.num);
+  document.getElementById('rrName').textContent=primary.name;
+  document.getElementById('rrPrice').innerHTML=inr(primary.offer_price)+' <s style="opacity:.45;font-weight:400;font-size:.72em">'+inr(was)+'</s> <span style="color:var(--accent);font-size:.62em;font-weight:700;letter-spacing:.04em">'+off+'% OFF</span>';
+  document.getElementById('rrWhy').textContent=why;
+  const covers=(primary.components||[]).slice(0,7).map(c=>c.test.split('(')[0].trim());
+  document.getElementById('rrCovers').innerHTML=covers.map(c=>'<span class="rr-cover">'+recEsc(c)+'</span>').join('')+((primary.components||[]).length>7?'<span class="rr-cover more">+'+((primary.components||[]).length-7)+' more</span>':'');
+  document.getElementById('rrView').href='pages/catalog.html?pkg='+primary.num;
+  // alternatives matched to each concern + gender
+  const seen=new Set([primary.num]);const alts=[];
+  concerns.forEach(k=>{const re=CONCERN_KW[k];if(!re)return;const m=PKGS.find(p=>!seen.has(p.num)&&(re.test(p.name)||re.test(p.section_title)||re.test(p._hay||'')));if(m){seen.add(m.num);alts.push({p:m,k});}});
+  if(recSex==='f'){const w=PKGS.find(p=>!seen.has(p.num)&&/women|female|gyn|pcod|pcos|ovar/i.test(p.name+' '+p.section_title));if(w){seen.add(w.num);alts.push({p:w,k:"Women's health"});}}
+  if(recSex==='m'){const w=PKGS.find(p=>!seen.has(p.num)&&/\bmen\b|male|prostate|testoster/i.test(p.name+' '+p.section_title));if(w){seen.add(w.num);alts.push({p:w,k:"Men's health"});}}
+  document.getElementById('rrAlts').innerHTML=alts.length?('<div class="rr-alts-h">Add-ons matched to your concerns</div>'+alts.slice(0,3).map(a=>`<a class="rr-alt" href="pages/catalog.html?pkg=${a.p.num}"><span class="ra-k">${recEsc(a.k)}</span><span class="ra-n">${recEsc(a.p.name)}</span><span class="ra-pr">${inr(a.p.offer_price)}</span><svg class="ic"><use href="#i-arrow"/></svg></a>`).join('')):'';
+  box.classList.add('on');box.scrollIntoView({behavior:'smooth',block:'center'});
+  if(window.gtag)gtag('event','recommend',{package:primary.name});
 }
 /* Reviews (built from data to keep markup lean) */
 (()=>{const R=[["J","Joginder Singh","Delhi","Executive reached at 7 AM sharp. Report on WhatsApp by next morning. Extremely professional. My whole family uses Biocity now."],["S","Seema Rakesh","Noida","Reports are incredibly accurate. Everything on time, as committed. I highly recommend Biocity to anyone."],["R","Rohit Sharma","Bangalore","Booked for parents in Ghaziabad from Bangalore. Team was incredibly gentle with my 68-year-old mother. Lifesaver."],["P","Priya Mehra","Jaipur","Family of 5 checkup. Found critically low Vitamin D — started treatment. Unbelievable pricing for this quality."],["A","Ankit Jain","HR Manager, Noida","200+ employees, one health camp. Biocity handled everything. Now our annual corporate wellness partner."],["V","Vikas Gupta","Gurugram","Slick booking, on-time collection, fast reports. This is how diagnostics should feel in 2026."]];
@@ -2209,7 +2446,30 @@ function animateCounters(){
   /* ---------- TABS + CURATED STRIP ---------- */
   const POPULAR=[1,2,10,18,31,34,39,28,23,43];
   const TAB_ICONS=['i-star','i-shield','i-usercheck','i-calendar','i-heart','i-gauge','i-leaf','i-home','i-award','i-scan'];
+  const TAB_COLORS=['#10b981','#0ea5e9','#f59e0b','#8b5cf6','#ef4444','#14b8a6','#ec4899','#f97316','#6366f1','#059669'];
   let curTab='popular';
+
+  /* auto-scroll carousel with full user control (arrows + swipe/drag) */
+  const PK={
+    row(){return document.querySelector('#shop .pk-row');},
+    step(){const c=$('pkTrack').querySelector('.pcard');return (c?c.getBoundingClientRect().width:300)+18;},
+    next(user){const r=this.row();if(!r)return;const max=r.scrollWidth-r.clientWidth-6;if(r.scrollLeft>=max)r.scrollTo({left:0,behavior:'smooth'});else r.scrollBy({left:this.step(),behavior:'smooth'});if(user)this.pause();},
+    prev(){const r=this.row();if(!r)return;if(r.scrollLeft<=6)r.scrollTo({left:r.scrollWidth,behavior:'smooth'});else r.scrollBy({left:-this.step(),behavior:'smooth'});this.pause();},
+    start(){this.stop();if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;this._t=setInterval(()=>{if(!this._pause)this.next(false);},3400);},
+    stop(){clearInterval(this._t);},
+    reset(){const r=this.row();if(r)r.scrollLeft=0;this.start();},
+    pause(){this._pause=true;clearTimeout(this._i);this._i=setTimeout(()=>{this._pause=false;},6000);},
+    bind(){const r=this.row();if(!r||r._bound)return;r._bound=true;
+      r.addEventListener('pointerenter',()=>{this._pause=true;});
+      r.addEventListener('pointerleave',()=>{if(!this._drag)this._pause=false;});
+      r.addEventListener('wheel',()=>this.pause(),{passive:true});
+      let down=false,sx=0,sl=0;
+      r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;if(e.target.closest('button,a'))return;down=true;this._drag=false;sx=e.clientX;sl=r.scrollLeft;});
+      window.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>4){this._drag=true;this._pause=true;r.classList.add('drag');r.scrollLeft=sl-dx;}});
+      window.addEventListener('pointerup',()=>{if(!down)return;down=false;if(this._drag){r.classList.remove('drag');this.pause();}});
+    }
+  };
+  window.PK=PK;
 
   function pcardHTML(p){const {was,off}=priceInfo(p.offer_price,p.num);const inCart=Cart.has(keyP(p));const np=(p.claimed_tests||'').replace(/Test.*/i,'').trim()||paramCount(p);
     return `<div class="pcard">
@@ -2217,7 +2477,7 @@ function animateCounters(){
       <h4>${esc(p.name)}</h4>
       <div class="p-meta"><span><svg><use href="#i-activity"/></svg><b>${esc(np)}</b> params</span><span><svg><use href="#i-clock"/></svg>${reportsWithin(p.offer_price)}</span></div>
       <div class="p-price"><span class="p-now">${inr(p.offer_price)}</span><span class="p-was">${inr(was)}</span></div>
-      <div class="p-btns"><button class="p-view" onclick="Detail.openPkg(${p.num})">View Details</button><button class="p-add ${inCart?'in':''}" onclick="Detail.addPkg(${p.num})">${inCart?'✓ Added':'Add to Cart'}</button></div>
+      <div class="p-btns"><button class="p-view" onclick="location.href='pages/catalog.html?pkg=${p.num}'">View Details</button><button class="p-add ${inCart?'in':''}" onclick="Detail.addPkg(${p.num})">${inCart?'✓ Added':'Add to Cart'}</button></div>
     </div>`;}
 
   function tabList(id){return id==='popular'?POPULAR.map(n=>PKGS.find(p=>p.num===n)).filter(Boolean):PKGS.filter(p=>p.section_id==id);}
@@ -2225,18 +2485,116 @@ function animateCounters(){
 
   function renderTabs(){
     const tabs=[{id:'popular',label:'Popular'}].concat(SECTIONS.map(s=>({id:s.id,label:s.short})));
-    $('tabbar').innerHTML=tabs.map((t,i)=>`<button class="tab ${t.id===curTab?'on':''}" data-tab="${t.id}"><svg><use href="#${TAB_ICONS[i%TAB_ICONS.length]}"/></svg>${esc(t.label)}</button>`).join('');
+    $('tabbar').innerHTML=tabs.map((t,i)=>`<button class="tab ${t.id==curTab?'on':''}" data-tab="${t.id}" style="--tc:${TAB_COLORS[i%TAB_COLORS.length]}"><svg><use href="#${TAB_ICONS[i%TAB_ICONS.length]}"/></svg>${esc(t.label)}</button>`).join('');
     $('tabbar').querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{curTab=el.dataset.tab;renderTabs();renderStrip();}));
+    renderCatDD();
   }
 
-  function renderStrip(){
+  /* interactive category dropdown for the Explore header */
+  function renderCatDD(){
+    const menu=$('catDDMenu');if(!menu)return;
+    const tabs=[{id:'popular',label:'Popular'}].concat(SECTIONS.map(s=>({id:s.id,label:s.short})));
+    const ci=Math.max(0,tabs.findIndex(t=>t.id==curTab));
+    const cur=tabs[ci]||tabs[0];
+    const lab=$('catDD').querySelector('.cdd-lab');if(lab)lab.textContent=cur.label;
+    $('catDDBtn').style.setProperty('--tc',TAB_COLORS[ci%TAB_COLORS.length]);
+    menu.innerHTML=tabs.map((t,i)=>{const cnt=t.id==='popular'?POPULAR.length:PKGS.filter(p=>p.section_id==t.id).length;
+      return `<div class="cat-opt ${t.id==curTab?'on':''}" data-tab="${t.id}" style="--tc:${TAB_COLORS[i%TAB_COLORS.length]}"><span class="co-ic"><svg class="ic"><use href="#${TAB_ICONS[i%TAB_ICONS.length]}"/></svg></span>${esc(t.label)}<span class="co-c">${cnt}</span></div>`;}).join('')
+      +`<a class="co-page" href="${curTab==='popular'?'pages/catalog.html':'pages/catalog.html?section='+curTab}"><svg class="ic"><use href="#i-arrow"/></svg>Open full category page</a>`;
+    menu.querySelectorAll('.cat-opt').forEach(el=>el.addEventListener('click',()=>{curTab=el.dataset.tab;$('catDD').classList.remove('open');renderTabs();renderStrip();}));
+  }
+
+  /* comprehensive two-level (segment → category → items) mega-menu, built from the catalog */
+  const MX_ICONS=['i-shield','i-heart','i-droplet','i-gauge','i-activity','i-bone','i-scan','i-moon','i-scale','i-leaf','i-award','i-usercheck','i-star','i-home'];
+  function buildMega(){
+    const box=$('megaCk');if(!box)return;
+    const dmap={};TESTS.forEach(t=>{const d=t.department||'Other';(dmap[d]=dmap[d]||[]).push(t);});
+    const DEPTS=Object.keys(dmap).sort().map(name=>({name,tests:dmap[name]}));
+    const st={seg:'chk',cat:0};
+    const catsFor=()=>st.seg==='chk'
+      ? SECTIONS.map((s,i)=>({label:s.short,count:PKGS.filter(p=>p.section_id==s.id).length,i}))
+      : DEPTS.map((d,i)=>({label:d.name,count:d.tests.length,i}));
+    function itemsFor(i){
+      if(st.seg==='chk'){const s=SECTIONS[i];if(!s)return{title:'',all:0,href:'#',items:[]};const list=PKGS.filter(p=>p.section_id==s.id);
+        return {title:s.title,all:list.length,href:'pages/catalog.html?section='+s.id,
+          items:list.slice(0,8).map(p=>({href:'pages/catalog.html?pkg='+p.num,name:p.name,sub:(p.claimed_tests||(paramCount(p)+' params'))+' · <span class="pr">'+inr(p.offer_price)+'</span>',ic:'i-shield'}))};}
+      const d=DEPTS[i];if(!d)return{title:'',all:0,href:'#',items:[]};
+      return {title:d.name,all:d.tests.length,href:'pages/catalog.html?dept='+encodeURIComponent(d.name),
+        items:d.tests.slice(0,8).map(t=>({href:'pages/catalog.html?test='+encodeURIComponent(t.code||t.name),name:fix(t.name),sub:(t.sample?esc(t.sample)+' · ':'')+'<span class="pr">'+inr(t.offer_price||t.mrp||0)+'</span>',ic:'i-droplet'}))};
+    }
+    function render(){
+      const cs=catsFor();
+      const rail=cs.map(c=>`<button class="mx-cat ${c.i===st.cat?'on':''}" data-i="${c.i}" style="--tc:${TAB_COLORS[c.i%TAB_COLORS.length]}"><span class="mxc-ic"><svg class="ic"><use href="#${MX_ICONS[c.i%MX_ICONS.length]}"/></svg></span><span class="mxc-n"><span>${esc(c.label)}</span><span class="mxc-c">${c.count} ${st.seg==='chk'?'packages':'tests'}</span></span><svg class="mxc-chev ic"><use href="#i-arrow"/></svg></button>`).join('');
+      const pd=itemsFor(st.cat);
+      const panel=`<div class="mx-phead"><b>${esc(pd.title)}</b><a class="mx-viewall" href="${pd.href}">View all ${pd.all} <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+        <div class="mx-grid">${pd.items.map(it=>`<a class="mx-item" href="${it.href}"><span class="mi-ic"><svg class="ic"><use href="#${it.ic}"/></svg></span><span class="mi-tx"><b>${esc(it.name)}</b><span>${it.sub}</span></span></a>`).join('')}</div>`;
+      box.innerHTML=`<div class="mx-seg">
+          <button class="${st.seg==='chk'?'on':''}" data-seg="chk"><svg class="ic"><use href="#i-shield"/></svg>Health Checkups</button>
+          <button class="${st.seg==='lab'?'on':''}" data-seg="lab"><svg class="ic"><use href="#i-droplet"/></svg>Lab Tests</button>
+        </div>
+        <div class="mx-body"><div class="mx-rail">${rail}</div><div class="mx-panel">${panel}</div></div>
+        <div class="mx-foot"><a href="pages/full-body-checkup.html">Full Body Checkup</a><a href="pages/offers.html">Offers &amp; Packages</a><a href="pages/bmi-calculator.html">BMI Calculator</a><a class="mx-foot-all" href="pages/catalog.html">Browse everything →</a></div>`;
+      box.querySelectorAll('.mx-seg button').forEach(b=>b.addEventListener('click',()=>{st.seg=b.dataset.seg;st.cat=0;render();}));
+      box.querySelectorAll('.mx-cat').forEach(b=>{const go=()=>{st.cat=+b.dataset.i;render();};b.addEventListener('mouseenter',go);b.addEventListener('click',go);b.addEventListener('focus',go);});
+    }
+    render();
+  }
+
+  /* mobile double-nav: segment → category → items drill-down */
+  function buildMobileNav(){
+    const box=$('mmBrowse');if(!box)return;
+    const dmap={};TESTS.forEach(t=>{const d=t.department||'Other';(dmap[d]=dmap[d]||[]).push(t);});
+    const DEPTS=Object.keys(dmap).sort().map(name=>({name,tests:dmap[name]}));
+    let seg='chk';
+    const cats=()=>seg==='chk'
+      ? SECTIONS.map((s,i)=>({label:s.short,count:PKGS.filter(p=>p.section_id==s.id).length,i}))
+      : DEPTS.map((d,i)=>({label:d.name,count:d.tests.length,i}));
+    function itemsFor(i){
+      if(seg==='chk'){const s=SECTIONS[i];if(!s)return null;const list=PKGS.filter(p=>p.section_id==s.id);
+        return {title:s.short,all:list.length,href:'pages/catalog.html?section='+s.id,
+          items:list.slice(0,14).map(p=>({href:'pages/catalog.html?pkg='+p.num,name:p.name,sub:(p.claimed_tests||(paramCount(p)+' params'))+' · <span class="pr">'+inr(p.offer_price)+'</span>',ic:'i-shield'}))};}
+      const d=DEPTS[i];if(!d)return null;
+      return {title:d.name,all:d.tests.length,href:'pages/catalog.html?dept='+encodeURIComponent(d.name),
+        items:d.tests.slice(0,14).map(t=>({href:'pages/catalog.html?test='+encodeURIComponent(t.code||t.name),name:fix(t.name),sub:(t.sample?esc(t.sample)+' · ':'')+'<span class="pr">'+inr(t.offer_price||t.mrp||0)+'</span>',ic:'i-droplet'}))};
+    }
+    box.innerHTML=`<div class="mmb-seg" id="mmbSeg">
+        <button data-seg="chk" class="on"><svg class="ic"><use href="#i-shield"/></svg>Health Checkups</button>
+        <button data-seg="lab"><svg class="ic"><use href="#i-droplet"/></svg>Lab Tests</button>
+      </div>
+      <div class="mmb-track">
+        <div class="mmb-cats" id="mmbCats"></div>
+        <div class="mmb-p2" id="mmbP2" hidden></div>
+      </div>`;
+    const catsEl=$('mmbCats'),p2=$('mmbP2');
+    function paintCats(){
+      catsEl.innerHTML=cats().map(c=>`<button class="mmb-cat" data-i="${c.i}" style="--tc:${TAB_COLORS[c.i%TAB_COLORS.length]}"><span class="mmc-ic"><svg class="ic"><use href="#${MX_ICONS[c.i%MX_ICONS.length]}"/></svg></span><span class="mmc-n"><span>${esc(c.label)}</span><span class="mmc-c">${c.count} ${seg==='chk'?'packages':'tests'}</span></span><svg class="mmc-chev ic"><use href="#i-arrow"/></svg></button>`).join('');
+      catsEl.querySelectorAll('.mmb-cat').forEach(b=>b.addEventListener('click',()=>openL2(+b.dataset.i)));
+    }
+    function backL1(){p2.hidden=true;catsEl.classList.remove('hide');const sc=box.closest('.mm-scroll');if(sc)sc.scrollTop=0;}
+    function openL2(i){
+      const pd=itemsFor(i);if(!pd)return;
+      p2.innerHTML=`<button class="mmb-back" type="button"><svg class="ic"><use href="#i-arrow"/></svg>All ${seg==='chk'?'categories':'departments'}</button>
+        <div class="mmb-l2h"><b>${esc(pd.title)}</b><a href="${pd.href}">View all ${pd.all} →</a></div>
+        <div class="mmb-items">${pd.items.map(it=>`<a class="mmb-item" href="${it.href}"><span class="mi-ic"><svg class="ic"><use href="#${it.ic}"/></svg></span><span class="mi-t"><b>${esc(it.name)}</b><span>${it.sub}</span></span></a>`).join('')}</div>`;
+      catsEl.classList.add('hide');p2.hidden=false;
+      p2.querySelector('.mmb-back').addEventListener('click',backL1);
+      const sc=box.closest('.mm-scroll');if(sc)sc.scrollTop=0;
+    }
+    $('mmbSeg').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{seg=b.dataset.seg;$('mmbSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));backL1();paintCats();}));
+    box._reset=backL1;
+    paintCats();
+  }
+  window.resetMobileNav=function(){const b=document.getElementById('mmBrowse');if(b&&b._reset)b._reset();};
+
+  function renderStrip(keep){
+    const r=PK.row();const sl=r?r.scrollLeft:0;
     const full=tabList(curTab);const CAP=10;const list=full.slice(0,CAP);
     const label=curTab==='popular'?'checkups':tabLabel(curTab).toLowerCase()+' checkups';
     const cards=list.map(pcardHTML);
-    cards.push(`<div class="pk-all" onclick="Detail.openList('${curTab}')"><svg class="ic"><use href="#i-arrow"/></svg>View all<br>${full.length} ${esc(label)}</div>`);
-    $('pkTrack').innerHTML=cards.concat(cards).join(''); // duplicate for seamless marquee
+    cards.push(`<div class="pk-all" onclick="location.href='${curTab==='popular'?'pages/catalog.html':'pages/catalog.html?section='+curTab}'"><svg class="ic"><use href="#i-arrow"/></svg>View all<br>${full.length} ${esc(label)}</div>`);
+    $('pkTrack').innerHTML=cards.join('');
     $('pkCnt').textContent=full.length+(curTab==='popular'?' hand-picked':' packages');
-    $('pkTrack').style.animationDuration=Math.max(64,(list.length+1)*8)+'s';
+    if(keep&&r){r.scrollLeft=sl;PK.start();}else{PK.reset();}
   }
 
   Detail.openList=function(id){
@@ -2246,21 +2604,37 @@ function animateCounters(){
     show();
   };
 
-  /* ---------- SEARCH ---------- */
+  /* ---------- SEARCH (parameter-aware) ---------- */
+  function paramHint(p,q){
+    if(p.name.toLowerCase().includes(q)||p.section_title.toLowerCase().includes(q))return null;
+    for(const c of (p.components||[])){
+      const tl=c.test.toLowerCase();
+      if(tl.includes(q)){
+        const m=c.test.match(/\(([^)]*)\)/);
+        if(m){const param=m[1].split(',').map(x=>x.trim()).find(x=>x.toLowerCase().includes(q));if(param)return param;}
+        return c.test.split('(')[0].trim();
+      }
+    }
+    return null;
+  }
   function results(q){
     q=q.trim().toLowerCase();if(!q)return[];
-    if(scope==='chk'){return PKGS.filter(p=>p.name.toLowerCase().includes(q)||p.section_title.toLowerCase().includes(q)).slice(0,8)
-        .map(p=>({t:'p',name:p.name,sub:p.section_title+' · '+(p.claimed_tests||''),pr:p.offer_price,id:p.num}));}
-    return TESTS.filter(t=>fix(t.name).toLowerCase().includes(q)||(t.profile||'').toLowerCase().includes(q)).slice(0,8)
+    if(scope==='chk'){
+      return PKGS.filter(p=>(p._hay||'').includes(q)).slice(0,9).map(p=>{
+        const hint=paramHint(p,q);
+        return {t:'p',name:p.name,sub:hint?('Includes '+hint):(p.section_title+' · '+(p.claimed_tests||'')),pr:p.offer_price,id:p.num,hit:!!hint};
+      });
+    }
+    return TESTS.filter(t=>(t._hay||'').includes(q)).slice(0,9)
         .map(t=>({t:'t',name:fix(t.name),sub:t.department||'Lab test',pr:t.offer_price||0,id:t.code||t.name}));
   }
   function renderDrop(){
     const q=$('osInput').value;const rs=results(q);const d=$('osDrop');
     if(!q.trim()){d.classList.remove('on');return;}
     if(!rs.length){d.innerHTML='<div class="os-none">No '+(scope==='chk'?'checkups':'tests')+' match “'+esc(q)+'”</div>';d.classList.add('on');return;}
-    d.innerHTML=rs.map(r=>`<div class="os-res" onclick="${r.t==='p'?`Detail.openPkg(${r.id})`:`Detail.openTest('${esc(String(r.id))}')`};window.__closeDrop()">
+    d.innerHTML=rs.map(r=>`<div class="os-res" onclick="location.href='pages/catalog.html?${r.t==='p'?'pkg='+r.id:'test='+encodeURIComponent(String(r.id))}'">
       <span class="r-ic"><svg class="ic"><use href="#${r.t==='p'?'i-shield':'i-droplet'}"/></svg></span>
-      <span class="r-tx"><b>${esc(r.name)}<span class="os-tag ${r.t==='t'?'t':''}">${r.t==='p'?'Checkup':'Test'}</span></b><span>${esc(r.sub)}</span></span>
+      <span class="r-tx"><b>${esc(r.name)}<span class="os-tag ${r.t==='t'?'t':''}">${r.t==='p'?'Checkup':'Test'}</span></b><span class="${r.hit?'r-hit':''}">${esc(r.sub)}</span></span>
       <span class="r-pr">${inr(r.pr)}</span></div>`).join('');
     d.classList.add('on');
   }
@@ -2274,9 +2648,18 @@ function animateCounters(){
     SECTIONS=d.sections.map(s=>{const short=(s.title||s.section).replace(/Packages?/i,'').trim();return{id:s.id,title:s.title||s.section,short:short,packages:s.packages};});
     PKGS=[];d.sections.forEach(s=>{const short=(s.title||s.section).replace(/Packages?/i,'').trim();s.packages.forEach(p=>{PKGS.push(Object.assign({},p,{section_id:s.id,section_title:s.title||s.section,section_short:short}));});});
     TESTS=(d.tests||[]).filter(t=>t.status!=='Inactive'&&t.offer_price);
-    renderTabs();renderStrip();Cart.render();
+    // precompute search haystacks so search also matches underlying parameters
+    const SYN=[[/diab|hba1c|glucose|sugar/,'diabetes sugar blood sugar hba1c glucose'],[/lipid|cholesterol|triglyc/,'cholesterol lipid heart cardiac triglycerides'],[/thyroid|tsh|\bt3\b|\bt4\b/,'thyroid tsh t3 t4'],[/vitamin ?d|25.?oh/,'vitamin d bone'],[/b12|cobalamin/,'vitamin b12 fatigue'],[/haemogram|hemogram|\bcbc\b|complete blood/,'cbc blood count anemia'],[/creatinine|urea|\bkft\b|renal/,'kidney renal kft creatinine'],[/sgpt|sgot|bilirubin|\blft\b/,'liver lft'],[/prostate|\bpsa\b/,'prostate men'],[/testoster|estrogen|prolactin|\bpcod\b|\bpcos\b/,'hormone hormonal women pcos'],[/uric/,'uric acid gout'],[/hiv|hbsag|vdrl/,'std infection']];
+    const synFor=s=>{const l=s.toLowerCase();return SYN.filter(x=>x[0].test(l)).map(x=>x[1]).join(' ');};
+    PKGS.forEach(p=>{const raw=fix(p.name+' '+p.section_title+' '+(p.claimed_tests||'')+' '+(p.components||[]).map(c=>c.test).join(' '));p._hay=(raw+' '+synFor(raw)).toLowerCase();});
+    TESTS.forEach(t=>{const raw=fix(t.name+' '+(t.profile||'')+' '+(t.department||'')+' '+(t.sample||''));t._hay=(raw+' '+synFor(raw)).toLowerCase();});
+    renderTabs();renderStrip();Cart.render();buildMega();buildMobileNav();
+    window.CATALOG={SECTIONS,PKGS,TESTS,inr,priceInfo,reportsWithin,fix,paramCount};
+    if(typeof window.onCatalogReady==='function')window.onCatalogReady();
+    PK.bind();
+    const _pp=$('pkPrev'),_pn=$('pkNext');if(_pp)_pp.onclick=()=>PK.prev();if(_pn)_pn.onclick=()=>PK.next(true);
     // re-render strip when cart changes so "Added" state reflects
-    const _save=Cart.save.bind(Cart);Cart.save=function(){_save();if(typeof renderStrip==='function')renderStrip();};
+    const _save=Cart.save.bind(Cart);Cart.save=function(){_save();if(typeof renderStrip==='function')renderStrip(true);};
   }).catch(e=>{console.error('catalog load failed',e);$('shop').style.display='none';});
 
   // search wiring
@@ -2285,6 +2668,9 @@ function animateCounters(){
   $('osLab').addEventListener('click',()=>{setScope('lab');if(!$('osInput').value)document.getElementById('shop').scrollIntoView({behavior:'smooth'});$('osInput').focus();});
   $('osChk').addEventListener('click',()=>{setScope('chk');if(!$('osInput').value)document.getElementById('shop').scrollIntoView({behavior:'smooth'});$('osInput').focus();});
   document.addEventListener('click',e=>{if(!e.target.closest('#osearch'))$('osDrop').classList.remove('on');});
+  // category dropdown toggle
+  const _cdb=$('catDDBtn');if(_cdb)_cdb.addEventListener('click',e=>{e.stopPropagation();$('catDD').classList.toggle('open');});
+  document.addEventListener('click',e=>{if(!e.target.closest('#catDD'))$('catDD').classList.remove('open');});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){Detail.close();Cart.close();$('osDrop').classList.remove('on');}});
 
   /* ---------- HERO IMAGE: static by design (no auto-slide, no motion) ---------- */

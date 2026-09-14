@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Browse Checkups &amp; Lab Tests — Category Catalog | Biocity Healthcare</title>
+<meta name="description" content="Browse every Biocity Healthcare health checkup and lab test, organized category-wise. View parameters, prices and book home sample collection across 60+ cities.">
+<meta name="theme-color" content="#10B981">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<script>(()=>{const s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s);})();</script>
+<style>
+body{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif}
+.catwrap{max-width:1180px;margin:0 auto;padding:132px 28px 90px;min-height:70vh}
+.cx-crumb{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--text3);font-weight:600;margin-bottom:22px;flex-wrap:wrap}
+.cx-crumb a{color:var(--text2)}.cx-crumb a:hover{color:var(--accent)}
+.cx-crumb svg{width:13px;height:13px;opacity:.5}
+.cx-head{margin-bottom:30px}
+.cx-eye{display:inline-flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans';font-size:.66rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);background:var(--accentS);border:1px solid var(--accentG);padding:6px 13px;border-radius:100px;margin-bottom:14px}
+.cx-eye .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.cx-head h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.02em;color:var(--text)}
+.cx-head p{margin-top:12px;color:var(--text2);font-size:1rem;max-width:640px;line-height:1.6}
+.cx-grp-h{display:flex;align-items:center;gap:10px;margin:40px 0 16px;font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.15rem;color:var(--text)}
+.cx-grp-h .gi{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;background:var(--accent)}
+.cx-grp-h .gi svg{width:18px;height:18px}
+.cx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:16px}
+.cx-card{display:flex;flex-direction:column;gap:12px;padding:20px;border-radius:20px;background:var(--surface);border:1px solid var(--glB);transition:all .3s;position:relative;overflow:hidden}
+.cx-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--tc,var(--accent));opacity:.9}
+.cx-card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--tc,var(--accent)) 45%,transparent);box-shadow:0 22px 50px rgba(0,0,0,.28)}
+.cx-card .cc-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cx-card .cc-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:var(--tc,var(--accent));background:color-mix(in srgb,var(--tc,var(--accent)) 15%,transparent)}
+.cx-card .cc-ic svg{width:21px;height:21px}
+.cx-card .cc-badge{font-size:.66rem;font-weight:800;color:#fff;background:#f97316;padding:4px 9px;border-radius:100px}
+.cx-card h3{font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.02rem;color:var(--text);letter-spacing:-.01em;line-height:1.25}
+.cx-card .cc-sub{font-size:.8rem;color:var(--text3);font-weight:500;line-height:1.5}
+.cx-card .cc-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.76rem;color:var(--text2);font-weight:600}
+.cx-card .cc-meta span{display:inline-flex;align-items:center;gap:6px}
+.cx-card .cc-meta svg{width:14px;height:14px;color:var(--accent)}
+.cx-card .cc-pr{display:flex;align-items:baseline;gap:9px;margin-top:2px}
+.cx-card .cc-now{font-size:1.28rem;font-weight:800;color:var(--text)}
+.cx-card .cc-was{font-size:.86rem;color:var(--text3);text-decoration:line-through}
+.cx-card .cc-btns{display:flex;gap:8px;margin-top:6px}
+.cx-btn{flex:1;text-align:center;padding:11px;border-radius:11px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s;border:1px solid var(--glB);background:var(--surface2);color:var(--text)}
+.cx-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cx-btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.cx-btn.pri:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 26px var(--accentG)}
+.cx-btn.pri.in{background:var(--accentD)}
+/* detail */
+.cx-detail{max-width:860px;margin:0 auto}
+.cx-dprice{display:flex;align-items:center;gap:12px;margin:16px 0 20px;flex-wrap:wrap}
+.cx-dprice .now{font-size:2rem;font-weight:800;color:var(--text)}
+.cx-dprice .was{font-size:1.05rem;color:var(--text3);text-decoration:line-through}
+.cx-dprice .off{font-size:.78rem;font-weight:800;color:#fff;background:#f97316;padding:5px 11px;border-radius:100px}
+.cx-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:26px}
+.cx-fact{padding:15px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--glB)}
+.cx-fact span{display:block;font-size:.72rem;color:var(--text3);font-weight:600;margin-bottom:5px}
+.cx-fact b{font-size:.94rem;color:var(--text);font-weight:800;display:inline-flex;align-items:center;gap:6px}
+.cx-fact b svg{width:14px;height:14px;color:var(--accent)}
+.cx-sec-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:26px 0 14px;font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.1rem;color:var(--text)}
+.cx-sec-h span{font-size:.78rem;color:var(--text3);font-weight:600}
+.cx-panel{border:1px solid var(--glB);border-radius:14px;margin-bottom:10px;overflow:hidden;background:var(--surface)}
+.cx-panel>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:11px;font-size:.9rem;font-weight:700;color:var(--text)}
+.cx-panel>summary::-webkit-details-marker{display:none}
+.cx-panel>summary .tick{width:20px;height:20px;border-radius:6px;background:var(--accentS);color:var(--accent);display:grid;place-items:center;flex-shrink:0}
+.cx-panel>summary .tick svg{width:12px;height:12px}
+.cx-panel>summary .pc{margin-left:auto;font-size:.72rem;color:var(--text3);font-weight:700}
+.cx-panel>summary .chev{width:15px;height:15px;color:var(--text3);transition:transform .3s;margin-left:10px}
+.cx-panel[open]>summary .chev{transform:rotate(180deg)}
+.cx-params{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 15px}
+.cx-param{font-size:.74rem;color:var(--text2);background:var(--surface2);border:1px solid var(--glB);padding:5px 11px;border-radius:100px;font-weight:500}
+.cx-note{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:13px;background:var(--accentS);border:1px solid var(--accentG);color:var(--text2);font-size:.84rem;margin:8px 0 22px}
+.cx-note svg{width:18px;height:18px;color:var(--accent);flex-shrink:0}
+.cx-dbtns{display:flex;gap:12px;flex-wrap:wrap}
+.cx-dbtns .btn{flex:1;min-width:200px;justify-content:center}
+.cx-empty{text-align:center;padding:80px 20px;color:var(--text3)}
+.cx-empty h2{color:var(--text);font-family:'Fraunces',serif;margin-bottom:10px}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--bg);padding:13px 22px;border-radius:100px;font-weight:700;font-size:.86rem;box-shadow:0 18px 44px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.16,1,.3,1);z-index:3000}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:640px){.catwrap{padding:104px 18px 70px}.cx-dbtns .btn{min-width:100%}}
+/* nav: two-level mega-menu + mobile drawer (these live in index inline CSS, not site.css) */
+.nl-wide{position:static}
+.megaX{max-width:min(940px,94vw);width:940px;padding:0;overflow:hidden}
+.mx-seg{display:flex;gap:6px;padding:14px 16px 2px}
+.mx-seg button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:12px;background:var(--surface2);border:1px solid var(--glB);color:var(--text2);font:inherit;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .25s}
+.mx-seg button svg{width:16px;height:16px}
+.mx-seg button:hover{color:var(--text);border-color:var(--accent)}
+.mx-seg button.on{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 22px var(--accentG)}
+.mx-body{display:grid;grid-template-columns:252px 1fr;height:min(66vh,440px)}
+.mx-rail{border-right:1px solid var(--glB);padding:12px;height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--glBH) transparent}
+.mx-rail::-webkit-scrollbar,.mx-panel::-webkit-scrollbar{width:7px}
+.mx-rail::-webkit-scrollbar-thumb,.mx-panel::-webkit-scrollbar-thumb{background:var(--glBH);border-radius:4px}
+.mx-cat{display:flex;align-items:center;gap:11px;width:100%;padding:10px 12px;border-radius:12px;cursor:pointer;color:var(--text2);font-weight:600;font-size:.82rem;transition:all .2s;border:1px solid transparent;text-align:left;background:none}
+.mx-cat .mxc-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;color:var(--tc,var(--accent));background:color-mix(in srgb,var(--tc,var(--accent)) 15%,transparent)}
+.mx-cat .mxc-ic svg{width:16px;height:16px}
+.mx-cat .mxc-n{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.mx-cat .mxc-c{font-size:.68rem;color:var(--text3);font-weight:600}
+.mx-cat .mxc-chev{width:14px;height:14px;opacity:0;transform:translateX(-4px);transition:all .2s;color:var(--tc,var(--accent))}
+.mx-cat:hover,.mx-cat.on{background:color-mix(in srgb,var(--tc,var(--accent)) 13%,var(--surface2));color:var(--text);border-color:color-mix(in srgb,var(--tc,var(--accent)) 32%,transparent)}
+.mx-cat.on .mxc-chev{opacity:1;transform:none}
+.mx-panel{padding:14px 16px;height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--glBH) transparent}
+.mx-phead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
+.mx-phead b{font-size:.92rem;font-weight:800;color:var(--text)}
+.mx-viewall{font-size:.74rem;font-weight:700;color:var(--accent);display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.mx-viewall svg{width:13px;height:13px}
+.mx-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.mx-item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:11px;transition:all .2s}
+.mx-item:hover{background:var(--accentS)}
+.mx-item .mi-ic{width:30px;height:30px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;color:var(--accent);background:var(--accentS);border:1px solid var(--glB);transition:all .3s}
+.mx-item:hover .mi-ic{background:var(--accent);color:#fff}
+.mx-item .mi-ic svg{width:15px;height:15px}
+.mx-item .mi-tx{min-width:0}
+.mx-item .mi-tx b{display:block;font-size:.76rem;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-item .mi-tx span{display:block;font-size:.66rem;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-item .mi-tx .pr{color:var(--accent);font-weight:700}
+.mx-foot{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;border-top:1px solid var(--glB);background:var(--surface2)}
+.mx-foot a{font-size:.72rem;font-weight:700;color:var(--text2);padding:7px 12px;border-radius:100px;border:1px solid var(--glB);transition:all .2s}
+.mx-foot a:hover{color:var(--accent);border-color:var(--accent);background:var(--accentS)}
+.mx-foot a.mx-foot-all{color:var(--accent);border-color:var(--accentG);background:var(--accentS)}
+@media(max-width:1240px){.megaX{width:min(820px,94vw)}.mx-body{grid-template-columns:220px 1fr}}
+@media(max-width:900px){.megaX{display:none}}
+.mmenu{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .38s;transform:translateY(8px)}
+.mmenu.on{opacity:1;pointer-events:auto;transform:none}
+.mm-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:86px 16px 10px}
+.mm-lbl{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin:0 0 12px 3px}
+.mm-sec{margin-top:24px}
+.mmb-seg{display:flex;gap:5px;background:var(--gl);border:1px solid var(--glB);border-radius:14px;padding:5px;margin-bottom:16px}
+.mmb-seg button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:12px 8px;border-radius:10px;font:inherit;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.82rem;color:var(--text2);background:none;border:0;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1)}
+.mmb-seg button svg{width:16px;height:16px;stroke-width:2}
+.mmb-seg button.on{color:#fff;background:var(--accent);box-shadow:0 5px 18px var(--accentG)}
+.mmb-track{position:relative}
+.mmb-cats{display:flex;flex-direction:column;gap:8px;animation:mmFade .3s ease}
+.mmb-cats.hide{display:none}
+.mmb-cat{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:15px;border:1px solid var(--glB);background:var(--gl);cursor:pointer;text-align:left;width:100%;transition:transform .18s,border-color .25s,background .25s}
+.mmb-cat:hover{border-color:var(--tc);background:color-mix(in srgb,var(--tc) 7%,var(--gl))}
+.mmb-cat:active{transform:scale(.98)}
+.mmb-cat .mmc-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--tc);background:color-mix(in srgb,var(--tc) 16%,transparent);flex-shrink:0}
+.mmb-cat .mmc-ic svg{width:20px;height:20px;stroke-width:2}
+.mmb-cat .mmc-n{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.mmb-cat .mmc-n>span:first-child{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.92rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mmb-cat .mmc-c{font-size:.72rem;color:var(--text3);font-weight:600}
+.mmb-cat .mmc-chev{width:17px;height:17px;color:var(--tc);flex-shrink:0}
+.mmb-p2[hidden]{display:none}
+.mmb-p2{animation:mmSlide .36s cubic-bezier(.16,1,.3,1)}
+@keyframes mmSlide{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@keyframes mmFade{from{opacity:0}to{opacity:1}}
+.mmb-back{display:inline-flex;align-items:center;gap:7px;font:inherit;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.8rem;color:var(--accent);background:var(--accentS);border:1px solid var(--accentG);border-radius:100px;cursor:pointer;padding:8px 15px;margin-bottom:14px}
+.mmb-back svg{width:15px;height:15px;transform:rotate(180deg)}
+.mmb-l2h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
+.mmb-l2h b{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:800;color:var(--text)}
+.mmb-l2h a{font-size:.73rem;font-weight:700;color:var(--accent);flex-shrink:0;white-space:nowrap}
+.mmb-items{display:flex;flex-direction:column;gap:7px}
+.mmb-item{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:13px;border:1px solid var(--glB);background:var(--gl);transition:border-color .2s,transform .18s}
+.mmb-item:active{transform:scale(.985)}
+.mmb-item:hover{border-color:var(--accent)}
+.mmb-item .mi-ic{width:33px;height:33px;border-radius:9px;display:grid;place-items:center;color:var(--accent);background:var(--accentS);flex-shrink:0}
+.mmb-item .mi-ic svg{width:16px;height:16px}
+.mmb-item .mi-t{flex:1;min-width:0}
+.mmb-item .mi-t b{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mmb-item .mi-t span{font-size:.72rem;color:var(--text3)}
+.mmb-item .mi-t .pr{color:var(--accent);font-weight:700}
+.mm-quick{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mm-quick a{display:flex;align-items:center;gap:9px;padding:14px;border-radius:14px;border:1px solid var(--glB);background:var(--gl);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.82rem;color:var(--text);transition:border-color .2s}
+.mm-quick a svg{width:18px;height:18px;color:var(--accent);stroke-width:2;flex-shrink:0}
+.mm-comp{margin-top:24px;border-top:1px solid var(--glB);padding-top:18px}
+.mm-comp>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.mm-comp>summary::-webkit-details-marker{display:none}
+.mm-comp>summary .mm-lbl{margin-bottom:0}
+.mm-comp .mmco-chev{width:16px;height:16px;color:var(--text3);transform:rotate(90deg);transition:transform .3s}
+.mm-comp[open] .mmco-chev{transform:rotate(-90deg)}
+.mm-complist{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:14px}
+.mm-complist a{font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:500;color:var(--text2);padding:11px 12px;border-radius:11px;background:var(--gl);border:1px solid var(--glB)}
+.mm-cta{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:9px;margin:8px 16px calc(16px + env(safe-area-inset-bottom));padding:16px;border-radius:100px;background:var(--accent);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.92rem;box-shadow:0 8px 28px var(--accentG)}
+.mm-cta svg{width:18px;height:18px;stroke-width:2.2}
+</style>
+</head>
+<body>
+<div class="bg-mesh"></div><div class="bg-cross"></div>
+<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+<div id="prog"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav"><div class="w nav-in">
+  <a href="../index.html" class="logo"><div class="logo-m pulse"><svg class="logo-atom" viewBox="0 0 200 200" fill="none" aria-hidden="true"><g><ellipse class="la-orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="la-e e1" cx="0" cy="0" r="15"/></g><g transform="rotate(60 100 100)"><ellipse class="la-orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="la-e e2" cx="0" cy="0" r="15"/></g><g transform="rotate(120 100 100)"><ellipse class="la-orbit" cx="100" cy="100" rx="82" ry="30"/><circle class="la-e e3" cx="0" cy="0" r="15"/></g><circle class="la-nuc" cx="100" cy="100" r="20"/></svg></div><div class="logo-t"><span>Bio<em>city</em></span><small>Healthcare</small></div></a>
+  <div class="nav-links">
+    <div class="nl-item nl-wide"><button class="nl-btn">Checkups &amp; Tests <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="mega megaX" id="megaCk"><div class="mx-body"><div class="mx-rail"></div><div class="mx-panel">Loading…</div></div></div>
+    </div>
+    <div class="nl-item"><button class="nl-btn">Company <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="mega"><div class="mega-g c2">
+        <a class="mega-a" href="about-us.html"><span class="mega-ic"><svg class="ic"><use href="#i-usercheck"/></svg></span><span class="mega-tx"><b>About Us</b><span>Story, doctors &amp; dieticians</span></span></a>
+        <a class="mega-a" href="certifications.html"><span class="mega-ic"><svg class="ic"><use href="#i-shield"/></svg></span><span class="mega-tx"><b>Certifications</b><span>NABL, ISO 15189 &amp; more</span></span></a>
+        <a class="mega-a" href="awards.html"><span class="mega-ic"><svg class="ic"><use href="#i-award"/></svg></span><span class="mega-tx"><b>Awards</b><span>20+ recognitions</span></span></a>
+        <a class="mega-a" href="contact.html"><span class="mega-ic"><svg class="ic"><use href="#i-phone"/></svg></span><span class="mega-tx"><b>Contact Us</b><span>Talk to our team</span></span></a>
+      </div></div>
+    </div>
+    <a class="nl-btn" href="blog.html">Blog</a>
+  </div>
+  <div class="nr">
+    <button class="th-btn" onclick="toggleTheme()" aria-label="Toggle theme"><svg id="sunI" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="moonI" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></button>
+    <a href="../index.html" class="cart-btn" id="cartBtn" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-badge" id="cartBadge">0</span></a>
+    <a href="#" class="nb" onclick="openModal();return false">Book Now</a>
+    <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu"><i></i><i></i><i></i></button>
+  </div>
+</div></nav>
+<div class="mmenu" id="mmenu">
+  <div class="mm-scroll">
+    <span class="mm-lbl">Browse checkups &amp; tests</span>
+    <div class="mm-browse" id="mmBrowse"></div>
+    <div class="mm-sec">
+      <span class="mm-lbl">Quick links</span>
+      <div class="mm-quick">
+        <a href="../index.html#recommender"><svg class="ic"><use href="#i-activity"/></svg>Find My Test</a>
+        <a href="full-body-checkup.html"><svg class="ic"><use href="#i-shield"/></svg>Full Body Checkup</a>
+        <a href="offers.html"><svg class="ic"><use href="#i-award"/></svg>Offers &amp; Packages</a>
+        <a href="../index.html#reviews"><svg class="ic"><use href="#i-star"/></svg>Reviews</a>
+      </div>
+    </div>
+    <details class="mm-comp">
+      <summary><span class="mm-lbl">Company</span><svg class="mmco-chev ic"><use href="#i-arrow"/></svg></summary>
+      <div class="mm-complist">
+        <a href="about-us.html">About Us</a><a href="certifications.html">Certifications</a><a href="awards.html">Awards</a><a href="media-coverage.html">Media Coverage</a><a href="social-activities.html">Social Activities</a><a href="blog.html">Blog</a><a href="contact.html">Contact Us</a>
+      </div>
+    </details>
+  </div>
+  <a class="mm-cta" href="#" onclick="closeMenu();openModal();return false"><svg class="ic"><use href="#i-home"/></svg>Book Home Visit</a>
+</div>
+
+<main class="catwrap" id="catMain"><div class="cx-empty"><h2>Loading catalog…</h2></div></main>
+
+<!-- Modal -->
+<div class="mod-bg" id="modal"><div class="mod">
+  <button class="mod-x" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <h3>Book a Test</h3>
+  <p>Share your details — we'll confirm your home visit within 30 minutes.</p>
+  <form onsubmit="submitForm(event)">
+    <div class="mf"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
+    <div class="mf"><label>Phone</label><input type="tel" placeholder="+91 XXXXX XXXXX" required></div>
+    <div class="mf"><label>City</label><input type="text" placeholder="Your city" required></div>
+    <div class="mf"><label>Package / Test</label><input type="text" id="mPkgField" placeholder="Selected item"></div>
+    <button type="submit" class="m-go" id="mGoBtn">Confirm My Booking</button>
+  </form>
+</div></div>
+
+<div class="toast" id="toast"></div>
+<a href="https://wa.me/918860606141?text=Hi%2C%20I%20want%20to%20book%20a%20health%20checkup" target="_blank" class="wa" aria-label="WhatsApp"><svg class="ic"><use href="#i-wa"/></svg></a>
+
+<script src="../assets/site.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const inr=n=>'₹'+Number(n||0).toLocaleString('en-IN');
+  const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const fix=s=>String(s||'').replace(/Funtion/g,'Function').replace(/Diabeties/g,'Diabetes').replace(/Testostrone/g,'Testosterone').replace(/Progestrone/g,'Progesterone');
+  const priceInfo=(offer,seed)=>{const p=[72,68,65,62,70,60,66];const off=p[seed%p.length];return{was:Math.round(offer/(1-off/100)/10)*10,off};};
+  const reportsWithin=o=>o>=3000?'6 hours':o>=1500?'12 hours':'24 hours';
+  const paramsOf=c=>{const m=String(c.test||'').match(/\(([\s\S]*)\)/);return m?m[1].split(',').map(x=>x.trim()).filter(Boolean):[];};
+  const pcount=p=>(p.components||[]).reduce((a,c)=>{const n=paramsOf(c).length;return a+(n||c.params||0);},0);
+  const COL=['#10b981','#0ea5e9','#f59e0b','#8b5cf6','#ef4444','#14b8a6','#ec4899','#f97316','#6366f1','#059669'];
+  const ICONS=['i-shield','i-heart','i-droplet','i-gauge','i-activity','i-bone','i-scan','i-moon','i-scale','i-leaf','i-award','i-usercheck','i-star','i-home'];
+  const CART_KEY='biocity_cart_v4';
+
+  let SECTIONS=[],PKGS=[],TESTS=[],DEPTS=[];
+
+  function cartGet(){try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]')}catch(e){return[]}}
+  function cartSet(a){localStorage.setItem(CART_KEY,JSON.stringify(a));cartBadge();}
+  function cartBadge(){const n=cartGet().length,b=$('cartBadge');if(b){b.textContent=n;b.classList.toggle('on',n>0);}}
+  window.addToCartPkg=function(num,btn){const p=PKGS.find(x=>x.num==num);if(!p)return;const{was}=priceInfo(p.offer_price,p.num);const a=cartGet();const key='p'+p.num;if(a.some(x=>x.key===key)){toast('Already in cart');return;}a.push({key,type:'package',name:p.name,sub:(p.claimed_tests||'')+' · '+p.section_title,price:p.offer_price,was});cartSet(a);toast('Added to cart ✓');if(btn){btn.textContent='✓ Added';btn.classList.add('in');}};
+  window.addToCartTest=function(code,btn){const t=TESTS.find(x=>(x.code||x.name)==code);if(!t)return;const a=cartGet();const key='t'+(t.code||t.name);if(a.some(x=>x.key===key)){toast('Already in cart');return;}a.push({key,type:'test',name:fix(t.name),sub:t.department||'Lab test',price:t.offer_price||0,was:t.mrp||t.offer_price||0});cartSet(a);toast('Added to cart ✓');if(btn){btn.textContent='✓ Added';btn.classList.add('in');}};
+  let tT;function toast(m){const el=$('toast');if(!el)return;el.textContent=m;el.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>el.classList.remove('on'),2200);}
+  window.bookItem=function(name){const f=$('mPkgField');if(f)f.value=name;if(typeof openModal==='function')openModal();};
+  window.toggleMenu=function(){const m=$('mmenu'),b=$('burger');if(!m)return;if(b)b.classList.toggle('on');m.classList.toggle('on');document.body.style.overflow=m.classList.contains('on')?'hidden':'';};
+  window.closeMenu=function(){const m=$('mmenu'),b=$('burger');if(b)b.classList.remove('on');if(m)m.classList.remove('on');document.body.style.overflow='';if(window.resetMobileNav)setTimeout(window.resetMobileNav,300);};
+
+  const qp=new URLSearchParams(location.search);
+
+  function crumb(parts){return `<nav class="cx-crumb"><a href="../index.html">Home</a><svg><use href="#i-arrow"/></svg><a href="catalog.html">Catalog</a>`+parts.map(p=>`<svg><use href="#i-arrow"/></svg>`+(p.href?`<a href="${p.href}">${esc(p.t)}</a>`:`<span>${esc(p.t)}</span>`)).join('')+`</nav>`;}
+
+  function pkgCard(p,i){const{was,off}=priceInfo(p.offer_price,p.num);const np=(p.claimed_tests||'').replace(/Test.*/i,'').trim()||pcount(p);const key='p'+p.num;const inC=cartGet().some(x=>x.key===key);
+    return `<div class="cx-card" style="--tc:${COL[i%COL.length]}">
+      <div class="cc-top"><span class="cc-ic"><svg class="ic"><use href="#${ICONS[i%ICONS.length]}"/></svg></span><span class="cc-badge">${off}% OFF</span></div>
+      <h3>${esc(p.name)}</h3>
+      <div class="cc-meta"><span><svg><use href="#i-activity"/></svg><b>${esc(np)}</b>&nbsp;params</span><span><svg><use href="#i-clock"/></svg>${reportsWithin(p.offer_price)}</span></div>
+      <div class="cc-pr"><span class="cc-now">${inr(p.offer_price)}</span><span class="cc-was">${inr(was)}</span></div>
+      <div class="cc-btns"><a class="cx-btn" href="catalog.html?pkg=${p.num}">View details</a><button class="cx-btn pri ${inC?'in':''}" onclick="addToCartPkg(${p.num},this)">${inC?'✓ Added':'Add to cart'}</button></div>
+    </div>`;}
+
+  function testCard(t,i){const off=t.offer_price||0,mrp=t.mrp||off,pct=mrp>off?Math.round((1-off/mrp)*100):0;const key='t'+(t.code||t.name);const inC=cartGet().some(x=>x.key===key);const code=encodeURIComponent(t.code||t.name);
+    return `<div class="cx-card" style="--tc:${COL[i%COL.length]}">
+      <div class="cc-top"><span class="cc-ic"><svg class="ic"><use href="#i-droplet"/></svg></span>${pct?`<span class="cc-badge">${pct}% OFF</span>`:''}</div>
+      <h3>${esc(fix(t.name))}</h3>
+      <div class="cc-sub">${esc(t.department||'Lab test')}${t.sample?' · '+esc(t.sample):''}</div>
+      <div class="cc-pr"><span class="cc-now">${inr(off)}</span>${mrp>off?`<span class="cc-was">${inr(mrp)}</span>`:''}</div>
+      <div class="cc-btns"><a class="cx-btn" href="catalog.html?test=${code}">View details</a><button class="cx-btn pri ${inC?'in':''}" onclick="addToCartTest('${code.replace(/'/g,"\\'")}',this)">${inC?'✓ Added':'Add to cart'}</button></div>
+    </div>`;}
+
+  function renderIndex(){
+    const chk=SECTIONS.map((s,i)=>{const list=PKGS.filter(p=>p.section_id==s.id);return `<a class="cx-card" style="--tc:${COL[i%COL.length]}" href="catalog.html?section=${s.id}">
+      <div class="cc-top"><span class="cc-ic"><svg class="ic"><use href="#${ICONS[i%ICONS.length]}"/></svg></span></div>
+      <h3>${esc(s.short)}</h3><div class="cc-sub">${list.length} packages · from ${inr(Math.min.apply(null,list.map(p=>p.offer_price)))}</div>
+      <div class="cc-btns"><span class="cx-btn pri">Explore ${list.length} →</span></div></a>`;}).join('');
+    const dep=DEPTS.map((d,i)=>`<a class="cx-card" style="--tc:${COL[i%COL.length]}" href="catalog.html?dept=${encodeURIComponent(d.name)}">
+      <div class="cc-top"><span class="cc-ic"><svg class="ic"><use href="#i-droplet"/></svg></span></div>
+      <h3>${esc(d.name)}</h3><div class="cc-sub">${d.tests.length} lab tests</div>
+      <div class="cc-btns"><span class="cx-btn pri">View ${d.tests.length} →</span></div></a>`).join('');
+    $('catMain').innerHTML=crumb([])+`
+      <div class="cx-head"><span class="cx-eye"><span class="dot"></span>Full catalog</span><h1>Browse checkups &amp; tests</h1><p>Everything we offer, organized category-wise. Pick a category to see packages and individual lab tests — each with full parameters and pricing.</p></div>
+      <div class="cx-grp-h"><span class="gi"><svg class="ic"><use href="#i-shield"/></svg></span>Health Checkup Categories</div>
+      <div class="cx-grid">${chk}</div>
+      <div class="cx-grp-h"><span class="gi"><svg class="ic"><use href="#i-droplet"/></svg></span>Lab Tests by Department</div>
+      <div class="cx-grid">${dep}</div>`;
+  }
+
+  function renderSection(id){
+    const s=SECTIONS.find(x=>x.id==id);if(!s)return renderIndex();
+    const list=PKGS.filter(p=>p.section_id==s.id);
+    $('catMain').innerHTML=crumb([{t:s.short}])+`
+      <div class="cx-head"><span class="cx-eye"><span class="dot"></span>${list.length} packages</span><h1>${esc(s.title)}</h1><p>Curated ${esc(s.short.toLowerCase())} packages with NABL-accredited testing and free home sample collection.</p></div>
+      <div class="cx-grid">${list.map(pkgCard).join('')}</div>`;
+  }
+
+  function renderDept(name){
+    const d=DEPTS.find(x=>x.name===name);if(!d)return renderIndex();
+    $('catMain').innerHTML=crumb([{t:'Lab Tests',href:'catalog.html'},{t:name}])+`
+      <div class="cx-head"><span class="cx-eye"><span class="dot"></span>${d.tests.length} tests</span><h1>${esc(name)}</h1><p>Individual lab tests in ${esc(name)} — book any test with free home sample collection and digital reports.</p></div>
+      <div class="cx-grid">${d.tests.map(testCard).join('')}</div>`;
+  }
+
+  function renderPkg(num){
+    const p=PKGS.find(x=>x.num==num);if(!p)return renderIndex();
+    const{was,off}=priceInfo(p.offer_price,p.num);const pc=pcount(p);
+    const panels=(p.components||[]).map(c=>{const name=fix(String(c.test).split('(')[0].trim());const ps=paramsOf(c);
+      return `<details class="cx-panel" open><summary><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>${esc(name)}<span class="pc">${ps.length||c.params||0} params</span><svg class="chev"><use href="#i-chevron"/></svg></summary>${ps.length?`<div class="cx-params">${ps.map(x=>`<span class="cx-param">${esc(x)}</span>`).join('')}</div>`:''}</details>`;}).join('');
+    $('catMain').innerHTML=crumb([{t:p.section_short||p.section_title,href:'catalog.html?section='+p.section_id},{t:p.name}])+`
+      <div class="cx-detail">
+        <div class="cx-head" style="margin-bottom:6px"><span class="cx-eye"><span class="dot"></span>${esc(p.section_title)}</span><h1>${esc(p.name)}</h1></div>
+        <div class="cx-dprice"><span class="now">${inr(p.offer_price)}</span><span class="was">${inr(was)}</span><span class="off">${off}% OFF</span></div>
+        <div class="cx-facts">
+          <div class="cx-fact"><span>Parameters</span><b>${esc(p.claimed_tests||(pc+' tests'))}</b></div>
+          <div class="cx-fact"><span>Reports within</span><b><svg><use href="#i-clock"/></svg>${reportsWithin(p.offer_price)}</b></div>
+          <div class="cx-fact"><span>Sample</span><b>Free home visit</b></div>
+        </div>
+        <div class="cx-sec-h">All parameters included <span>${(p.components||[]).length} panels · ${pc} parameters</span></div>
+        ${panels||'<div class="cx-note"><svg><use href="#i-help"/></svg>Full panel details shared on booking.</div>'}
+        <div class="cx-note"><svg><use href="#i-shield"/></svg>NABL-accredited · free home sample collection · fasting may be required.</div>
+        <div class="cx-dbtns"><button class="btn btn-f" onclick="addToCartPkg(${p.num},null)">Add to Cart · ${inr(p.offer_price)}</button><button class="btn btn-g" onclick="bookItem('${esc(p.name).replace(/'/g,"&#39;")}')">Book Now <svg class="ic"><use href="#i-arrow"/></svg></button></div>
+      </div>`;
+  }
+
+  function renderTest(code){
+    const t=TESTS.find(x=>(x.code||x.name)==code);if(!t)return renderIndex();
+    const off=t.offer_price||0,mrp=t.mrp||off,pct=mrp>off?Math.round((1-off/mrp)*100):0;const codeE=encodeURIComponent(t.code||t.name);
+    $('catMain').innerHTML=crumb([{t:t.department||'Lab Tests',href:'catalog.html?dept='+encodeURIComponent(t.department||'')},{t:fix(t.name)}])+`
+      <div class="cx-detail">
+        <div class="cx-head" style="margin-bottom:6px"><span class="cx-eye"><span class="dot"></span>${esc(t.department||'Lab Test')}</span><h1>${esc(fix(t.name))}</h1></div>
+        <div class="cx-dprice"><span class="now">${inr(off)}</span>${mrp>off?`<span class="was">${inr(mrp)}</span><span class="off">${pct}% OFF</span>`:''}</div>
+        <div class="cx-facts">
+          <div class="cx-fact"><span>Sample</span><b>${esc(t.sample||'—')}</b></div>
+          <div class="cx-fact"><span>Reports</span><b><svg><use href="#i-clock"/></svg>${esc(t.tat||'24-48 hrs')}</b></div>
+          <div class="cx-fact"><span>Fasting</span><b>${esc(t.fasting||'No')}</b></div>
+        </div>
+        ${t.special?`<div class="cx-sec-h">Preparation</div><div class="cx-note"><svg><use href="#i-help"/></svg>${esc(t.special)}</div>`:''}
+        ${t.profile?`<div class="cx-note"><svg><use href="#i-activity"/></svg>Part of the <b style="margin:0 4px">${esc(t.profile)}</b> panel.</div>`:''}
+        <div class="cx-note"><svg><use href="#i-shield"/></svg>${t.nabl==='Yes'?'NABL-accredited scope · ':''}Run on ${esc(t.machine||'an automated analyzer')}.</div>
+        <div class="cx-dbtns"><button class="btn btn-f" onclick="addToCartTest('${codeE.replace(/'/g,"\\'")}',null)">Add to Cart · ${inr(off)}</button><button class="btn btn-g" onclick="bookItem('${esc(fix(t.name)).replace(/'/g,"&#39;")}')">Book Now <svg class="ic"><use href="#i-arrow"/></svg></button></div>
+      </div>`;
+  }
+
+  function route(){
+    if(qp.get('pkg'))return renderPkg(qp.get('pkg'));
+    if(qp.get('test'))return renderTest(qp.get('test'));
+    if(qp.get('section'))return renderSection(qp.get('section'));
+    if(qp.get('dept'))return renderDept(qp.get('dept'));
+    renderIndex();
+  }
+
+  /* two-level mega-menu (relative paths for pages/ context) */
+  function buildMega(){
+    const box=$('megaCk');if(!box)return;const st={seg:'chk',cat:0};
+    const cats=()=>st.seg==='chk'?SECTIONS.map((s,i)=>({label:s.short,count:PKGS.filter(p=>p.section_id==s.id).length,i})):DEPTS.map((d,i)=>({label:d.name,count:d.tests.length,i}));
+    function items(i){if(st.seg==='chk'){const s=SECTIONS[i];if(!s)return{title:'',all:0,href:'#',items:[]};const l=PKGS.filter(p=>p.section_id==s.id);return{title:s.title,all:l.length,href:'catalog.html?section='+s.id,items:l.slice(0,8).map(p=>({href:'catalog.html?pkg='+p.num,name:p.name,sub:(p.claimed_tests||'')+' · <span class="pr">'+inr(p.offer_price)+'</span>',ic:'i-shield'}))};}
+      const d=DEPTS[i];if(!d)return{title:'',all:0,href:'#',items:[]};return{title:d.name,all:d.tests.length,href:'catalog.html?dept='+encodeURIComponent(d.name),items:d.tests.slice(0,8).map(t=>({href:'catalog.html?test='+encodeURIComponent(t.code||t.name),name:fix(t.name),sub:'<span class="pr">'+inr(t.offer_price||t.mrp||0)+'</span>',ic:'i-droplet'}))};}
+    function render(){const cs=cats();const rail=cs.map(c=>`<button class="mx-cat ${c.i===st.cat?'on':''}" data-i="${c.i}" style="--tc:${COL[c.i%COL.length]}"><span class="mxc-ic"><svg class="ic"><use href="#${ICONS[c.i%ICONS.length]}"/></svg></span><span class="mxc-n"><span>${esc(c.label)}</span><span class="mxc-c">${c.count} ${st.seg==='chk'?'packages':'tests'}</span></span><svg class="mxc-chev ic"><use href="#i-arrow"/></svg></button>`).join('');
+      const pd=items(st.cat);const panel=`<div class="mx-phead"><b>${esc(pd.title)}</b><a class="mx-viewall" href="${pd.href}">View all ${pd.all} <svg class="ic"><use href="#i-arrow"/></svg></a></div><div class="mx-grid">${pd.items.map(it=>`<a class="mx-item" href="${it.href}"><span class="mi-ic"><svg class="ic"><use href="#${it.ic}"/></svg></span><span class="mi-tx"><b>${esc(it.name)}</b><span>${it.sub}</span></span></a>`).join('')}</div>`;
+      box.innerHTML=`<div class="mx-seg"><button class="${st.seg==='chk'?'on':''}" data-seg="chk"><svg class="ic"><use href="#i-shield"/></svg>Health Checkups</button><button class="${st.seg==='lab'?'on':''}" data-seg="lab"><svg class="ic"><use href="#i-droplet"/></svg>Lab Tests</button></div><div class="mx-body"><div class="mx-rail">${rail}</div><div class="mx-panel">${panel}</div></div><div class="mx-foot"><a href="full-body-checkup.html">Full Body Checkup</a><a href="offers.html">Offers &amp; Packages</a><a class="mx-foot-all" href="catalog.html">Browse everything →</a></div>`;
+      box.querySelectorAll('.mx-seg button').forEach(b=>b.addEventListener('click',()=>{st.seg=b.dataset.seg;st.cat=0;render();}));
+      box.querySelectorAll('.mx-cat').forEach(b=>{const go=()=>{st.cat=+b.dataset.i;render();};b.addEventListener('mouseenter',go);b.addEventListener('click',go);});}
+    render();
+  }
+  function buildMobileNav(){
+    const box=$('mmBrowse');if(!box)return;let seg='chk';
+    const cats=()=>seg==='chk'?SECTIONS.map((s,i)=>({label:s.short,count:PKGS.filter(p=>p.section_id==s.id).length,i})):DEPTS.map((d,i)=>({label:d.name,count:d.tests.length,i}));
+    function itemsFor(i){if(seg==='chk'){const s=SECTIONS[i];if(!s)return null;const l=PKGS.filter(p=>p.section_id==s.id);return{title:s.short,all:l.length,href:'catalog.html?section='+s.id,items:l.slice(0,14).map(p=>({href:'catalog.html?pkg='+p.num,name:p.name,sub:(p.claimed_tests||'')+' · <span class="pr">'+inr(p.offer_price)+'</span>',ic:'i-shield'}))};}
+      const d=DEPTS[i];if(!d)return null;return{title:d.name,all:d.tests.length,href:'catalog.html?dept='+encodeURIComponent(d.name),items:d.tests.slice(0,14).map(t=>({href:'catalog.html?test='+encodeURIComponent(t.code||t.name),name:fix(t.name),sub:(t.sample?esc(t.sample)+' · ':'')+'<span class="pr">'+inr(t.offer_price||t.mrp||0)+'</span>',ic:'i-droplet'}))};}
+    box.innerHTML=`<div class="mmb-seg" id="mmbSeg"><button data-seg="chk" class="on"><svg class="ic"><use href="#i-shield"/></svg>Health Checkups</button><button data-seg="lab"><svg class="ic"><use href="#i-droplet"/></svg>Lab Tests</button></div><div class="mmb-track"><div class="mmb-cats" id="mmbCats"></div><div class="mmb-p2" id="mmbP2" hidden></div></div>`;
+    const catsEl=$('mmbCats'),p2=$('mmbP2');
+    function paintCats(){catsEl.innerHTML=cats().map(c=>`<button class="mmb-cat" data-i="${c.i}" style="--tc:${COL[c.i%COL.length]}"><span class="mmc-ic"><svg class="ic"><use href="#${ICONS[c.i%ICONS.length]}"/></svg></span><span class="mmc-n"><span>${esc(c.label)}</span><span class="mmc-c">${c.count} ${seg==='chk'?'packages':'tests'}</span></span><svg class="mmc-chev ic"><use href="#i-arrow"/></svg></button>`).join('');catsEl.querySelectorAll('.mmb-cat').forEach(b=>b.addEventListener('click',()=>openL2(+b.dataset.i)));}
+    function backL1(){p2.hidden=true;catsEl.classList.remove('hide');const sc=box.closest('.mm-scroll');if(sc)sc.scrollTop=0;}
+    function openL2(i){const pd=itemsFor(i);if(!pd)return;p2.innerHTML=`<button class="mmb-back" type="button"><svg class="ic"><use href="#i-arrow"/></svg>All ${seg==='chk'?'categories':'departments'}</button><div class="mmb-l2h"><b>${esc(pd.title)}</b><a href="${pd.href}">View all ${pd.all} →</a></div><div class="mmb-items">${pd.items.map(it=>`<a class="mmb-item" href="${it.href}"><span class="mi-ic"><svg class="ic"><use href="#${it.ic}"/></svg></span><span class="mi-t"><b>${esc(it.name)}</b><span>${it.sub}</span></span></a>`).join('')}</div>`;catsEl.classList.add('hide');p2.hidden=false;p2.querySelector('.mmb-back').addEventListener('click',backL1);const sc=box.closest('.mm-scroll');if(sc)sc.scrollTop=0;}
+    $('mmbSeg').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{seg=b.dataset.seg;$('mmbSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));backL1();paintCats();}));
+    box._reset=backL1;paintCats();
+  }
+  window.resetMobileNav=function(){const b=document.getElementById('mmBrowse');if(b&&b._reset)b._reset();};
+
+  fetch('../assets/data/catalog.json').then(r=>r.json()).then(d=>{
+    SECTIONS=d.sections.map(s=>({id:s.id,title:s.title||s.section,short:(s.title||s.section).replace(/Packages?/i,'').trim(),packages:s.packages}));
+    PKGS=[];d.sections.forEach(s=>{const short=(s.title||s.section).replace(/Packages?/i,'').trim();(s.packages||[]).forEach(p=>PKGS.push(Object.assign({},p,{section_id:s.id,section_title:s.title||s.section,section_short:short})));});
+    TESTS=(d.tests||[]).filter(t=>t.status!=='Inactive'&&t.offer_price);
+    const dmap={};TESTS.forEach(t=>{const k=t.department||'Other';(dmap[k]=dmap[k]||[]).push(t);});
+    DEPTS=Object.keys(dmap).sort().map(name=>({name,tests:dmap[name]}));
+    cartBadge();buildMega();buildMobileNav();route();
+  }).catch(e=>{$('catMain').innerHTML='<div class="cx-empty"><h2>Could not load catalog</h2><p>Please refresh the page.</p></div>';console.error(e);});
+})();
+</script>
+</body>
+</html>
