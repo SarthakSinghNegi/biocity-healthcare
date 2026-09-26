@@ -1,56 +1,52 @@
 # Biocity Healthcare — Website
 
-> 📖 **Start here:** [`docs/KNOWLEDGE_BANK.md`](docs/KNOWLEDGE_BANK.md) is the living technical
-> knowledge bank (architecture, components, deploy workflow, caveats). It is the source of
-> truth for the current site — parts of this README describe the earlier prototype.
-
-A fast, fully self-contained marketing website for Biocity Healthcare (NABL-accredited diagnostics, home sample collection, full-body health checkups).
-
-Every page is a single HTML file with **all CSS and JavaScript inlined** — no build step, no dependencies, no external asset files. Open any file directly in a browser and it just works (light/dark mode, animations, mobile-responsive, print-friendly).
+Static marketing website for Biocity Healthcare (NABL-accredited diagnostics, home sample
+collection, full-body health checkups). Plain HTML, CSS and JavaScript — no build step, no
+framework, no npm install. Clone it and open it.
 
 ## Structure
 
 ```
 .
-├── index.html                         # Home page
-├── pages/
-│   ├── city-noida.html                # City landing page (template)
-│   ├── condition-diabetes.html        # Condition/ailment landing page (template)
-│   ├── blog.html                      # Blog hub + Trusted Resources (genuine external links)
-│   └── blog-vitamin-d-deficiency.html # Sample blog article
-├── docs/                              # Internal planning docs (not part of the live site)
-│   ├── BIOCITY_PLAYBOOK.md
-│   ├── KNOWLEDGE_BANK.html
-│   └── PHASE1A_PLAN.html
-├── .nojekyll                          # Tell GitHub Pages to serve files as-is (no Jekyll)
-└── README.md
+├── index.html            # Home page
+├── pages/                # 25 inner pages (about, contact, blog, tests, policies, …)
+├── assets/
+│   ├── site.css          # All shared styling
+│   ├── site.js           # All shared behaviour (nav, theme, search, carousels)
+│   ├── data/catalog.json # Test catalog, loaded at runtime by the Find-a-Test search
+│   └── awards|certs|lab|social|team|welfare/   # Images
+├── docs/                 # Internal notes — not part of the published site
+├── robots.txt            # Currently blocks search engines (see "Before going live")
+├── .nojekyll             # Tells GitHub Pages to serve files exactly as written
+└── .github/workflows/pages.yml   # Publishes the site automatically
 ```
 
-All links are relative, so the site is portable — the whole folder can be moved or served from any static host.
+All links are relative, so the folder can be served from any static host as-is.
 
 ## Run locally
 
-Just open `index.html` in a browser, or serve the folder:
-
 ```bash
 python3 -m http.server 8000
-# then visit http://localhost:8000
+# then open http://localhost:8000
 ```
 
-## Deploy to GitHub Pages
+Opening `index.html` directly also works, except the Find-a-Test search — browsers block
+`catalog.json` from loading over `file://`, so use the local server for that.
 
-1. Create a new GitHub repository (e.g. `biocity-healthcare`) and push this folder to it:
-   ```bash
-   git init
-   git add .
-   git commit -m "Biocity Healthcare website"
-   git branch -M main
-   git remote add origin git@github.com:<your-username>/biocity-healthcare.git
-   git push -u origin main
-   ```
-2. In the repo: **Settings → Pages → Build and deployment**.
-3. Set **Source: Deploy from a branch**, **Branch: `main`**, **Folder: `/ (root)`**, then **Save**.
-4. After a minute the site is live at:
-   `https://<your-username>.github.io/biocity-healthcare/`
+## How it gets published
 
-The included `.nojekyll` file ensures GitHub serves the HTML exactly as written.
+Pushing to `main` triggers `.github/workflows/pages.yml`, which uploads the whole repository
+to GitHub Pages. There is nothing to build and nothing to run manually — push, wait about a
+minute, refresh.
+
+Live at: https://nikhilgupta24.github.io/biocity-healthcare/
+
+## Before going live on the real domain
+
+Two things in this repo exist only because it is currently a preview/UAT build:
+
+1. **`robots.txt` blocks every search engine.** That is deliberate — it stops the preview from
+   competing with the live site in Google. Delete the file when this becomes the real site.
+2. **No custom domain is configured.** To serve this on a domain, add a `CNAME` file containing
+   the domain (or set it under *Settings → Pages*), **and** add the matching DNS record at the
+   registrar. Both halves are required — doing only the first makes the site unreachable.
