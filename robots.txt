@@ -1,0 +1,5 @@
+# UAT / preview site — must stay out of search engines so it never competes
+# with the live site at biocityhealthcare.com.
+# DELETE this file when this build is promoted to the real domain.
+User-agent: *
+Disallow: /
