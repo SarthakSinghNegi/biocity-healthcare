@@ -1154,6 +1154,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
 .pcard .p-cat{font-size:.62rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--accent);background:var(--accentS);padding:4px 9px;border-radius:7px}
 .pcard .p-off{font-size:.66rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#f59e0b,#f97316);padding:4px 9px;border-radius:7px}
 .pcard h4{font-size:1.02rem;font-weight:800;color:var(--text);letter-spacing:-.01em;line-height:1.25;min-height:2.5em;display:flex;align-items:center}
+.pcard .p-about{margin:6px 0 0;font-size:.78rem;color:var(--text2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .pcard .p-meta{display:flex;gap:14px;font-size:.72rem;color:var(--text2)}
 .pcard .p-meta b{color:var(--text);font-weight:700}
 .pcard .p-meta svg{width:13px;height:13px;color:var(--accent);vertical-align:-2px;margin-right:3px}
@@ -1177,6 +1178,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--text3) transparent}
 .dm-x svg{width:15px;height:15px}
 .dm-cat{font-size:.65rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--accent)}
 .dm-card h3{font-size:1.5rem;font-weight:800;color:var(--text);letter-spacing:-.02em;margin:4px 0 2px}
+.dm-about{margin:10px 0 2px;font-size:.9rem;line-height:1.65;color:var(--text2)}
 .dm-price{display:flex;align-items:baseline;gap:10px;margin:12px 0}
 .dm-price .now{font-size:1.8rem;font-weight:800;color:var(--text)}
 .dm-price .was{font-size:1rem;color:var(--text3);text-decoration:line-through}
@@ -2411,6 +2413,7 @@ function animateCounters(){
       const panels=(p.components||[]).map(c=>{const name=fix(c.test.split('(')[0].trim());const m=c.test.match(/\(([\s\S]*)\)/);const ps=m?m[1].split(',').map(x=>x.trim()).filter(Boolean):[];
         return `<details class="dm-panel" open><summary><svg class="tick"><use href="#i-check"/></svg>${esc(name)}<span class="pc">${ps.length||c.params||0} params</span><svg class="pchev"><use href="#i-chevron"/></svg></summary>${ps.length?`<div class="dm-params">${ps.map(x=>`<span class="dm-param">${esc(x)}</span>`).join('')}</div>`:''}</details>`;}).join('');
       $('dmBody').innerHTML=`<div class="dm-cat">${esc(p.section_title)}</div><h3>${esc(p.name)}</h3>
+        ${p.about?`<p class="dm-about">${esc(p.about)}</p>`:''}
         <div class="dm-price"><span class="now">${inr(p.offer_price)}</span><span class="was">${inr(was)}</span><span class="off">${off}% OFF</span></div>
         <div class="dm-facts">
           <div class="dm-fact"><span>Parameters</span><b>${p.claimed_tests||pc+' tests'}</b></div>
@@ -2471,10 +2474,12 @@ function animateCounters(){
   };
   window.PK=PK;
 
+  function aboutLead(p){const a=(p.about||'').trim();if(!a)return'';const m=a.match(/^.+?[.](?=\s|$)/);return (m?m[0]:a).trim();}
   function pcardHTML(p){const {was,off}=priceInfo(p.offer_price,p.num);const inCart=Cart.has(keyP(p));const np=(p.claimed_tests||'').replace(/Test.*/i,'').trim()||paramCount(p);
     return `<div class="pcard">
       <div class="pcard-top"><span class="p-cat">${esc(p.section_short)}</span><span class="p-off">${off}% OFF</span></div>
       <h4>${esc(p.name)}</h4>
+      ${p.about?`<p class="p-about">${esc(aboutLead(p))}</p>`:''}
       <div class="p-meta"><span><svg><use href="#i-activity"/></svg><b>${esc(np)}</b> params</span><span><svg><use href="#i-clock"/></svg>${reportsWithin(p.offer_price)}</span></div>
       <div class="p-price"><span class="p-now">${inr(p.offer_price)}</span><span class="p-was">${inr(was)}</span></div>
       <div class="p-btns"><button class="p-view" onclick="location.href='pages/catalog.html?pkg=${p.num}'">View Details</button><button class="p-add ${inCart?'in':''}" onclick="Detail.addPkg(${p.num})">${inCart?'✓ Added':'Add to Cart'}</button></div>
@@ -2651,7 +2656,7 @@ function animateCounters(){
     // precompute search haystacks so search also matches underlying parameters
     const SYN=[[/diab|hba1c|glucose|sugar/,'diabetes sugar blood sugar hba1c glucose'],[/lipid|cholesterol|triglyc/,'cholesterol lipid heart cardiac triglycerides'],[/thyroid|tsh|\bt3\b|\bt4\b/,'thyroid tsh t3 t4'],[/vitamin ?d|25.?oh/,'vitamin d bone'],[/b12|cobalamin/,'vitamin b12 fatigue'],[/haemogram|hemogram|\bcbc\b|complete blood/,'cbc blood count anemia'],[/creatinine|urea|\bkft\b|renal/,'kidney renal kft creatinine'],[/sgpt|sgot|bilirubin|\blft\b/,'liver lft'],[/prostate|\bpsa\b/,'prostate men'],[/testoster|estrogen|prolactin|\bpcod\b|\bpcos\b/,'hormone hormonal women pcos'],[/uric/,'uric acid gout'],[/hiv|hbsag|vdrl/,'std infection']];
     const synFor=s=>{const l=s.toLowerCase();return SYN.filter(x=>x[0].test(l)).map(x=>x[1]).join(' ');};
-    PKGS.forEach(p=>{const raw=fix(p.name+' '+p.section_title+' '+(p.claimed_tests||'')+' '+(p.components||[]).map(c=>c.test).join(' '));p._hay=(raw+' '+synFor(raw)).toLowerCase();});
+    PKGS.forEach(p=>{const raw=fix(p.name+' '+p.section_title+' '+(p.about||'')+' '+(p.claimed_tests||'')+' '+(p.components||[]).map(c=>c.test).join(' '));p._hay=(raw+' '+synFor(raw)).toLowerCase();});
     TESTS.forEach(t=>{const raw=fix(t.name+' '+(t.profile||'')+' '+(t.department||'')+' '+(t.sample||''));t._hay=(raw+' '+synFor(raw)).toLowerCase();});
     renderTabs();renderStrip();Cart.render();buildMega();buildMobileNav();
     window.CATALOG={SECTIONS,PKGS,TESTS,inr,priceInfo,reportsWithin,fix,paramCount};

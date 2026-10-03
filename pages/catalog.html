@@ -22,6 +22,7 @@ body{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif}
 .cx-eye .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
 .cx-head h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,4.4vw,3rem);line-height:1.05;letter-spacing:-.02em;color:var(--text)}
 .cx-head p{margin-top:12px;color:var(--text2);font-size:1rem;max-width:640px;line-height:1.6}
+.cx-about{margin:8px 0 4px;color:var(--text2);font-size:.96rem;max-width:720px;line-height:1.65}
 .cx-grp-h{display:flex;align-items:center;gap:10px;margin:40px 0 16px;font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.15rem;color:var(--text)}
 .cx-grp-h .gi{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;background:var(--accent)}
 .cx-grp-h .gi svg{width:18px;height:18px}
@@ -34,6 +35,7 @@ body{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif}
 .cx-card .cc-ic svg{width:21px;height:21px}
 .cx-card .cc-badge{font-size:.66rem;font-weight:800;color:#fff;background:#f97316;padding:4px 9px;border-radius:100px}
 .cx-card h3{font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.02rem;color:var(--text);letter-spacing:-.01em;line-height:1.25}
+.cx-card .cc-about{margin:8px 0 0;font-size:.8rem;color:var(--text2);font-weight:500;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .cx-card .cc-sub{font-size:.8rem;color:var(--text3);font-weight:500;line-height:1.5}
 .cx-card .cc-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.76rem;color:var(--text2);font-weight:600}
 .cx-card .cc-meta span{display:inline-flex;align-items:center;gap:6px}
@@ -277,10 +279,12 @@ body{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif}
 
   function crumb(parts){return `<nav class="cx-crumb"><a href="../index.html">Home</a><svg><use href="#i-arrow"/></svg><a href="catalog.html">Catalog</a>`+parts.map(p=>`<svg><use href="#i-arrow"/></svg>`+(p.href?`<a href="${p.href}">${esc(p.t)}</a>`:`<span>${esc(p.t)}</span>`)).join('')+`</nav>`;}
 
+  function aboutLead(p){const a=(p.about||'').trim();if(!a)return'';const m=a.match(/^.+?[.](?=\s|$)/);return (m?m[0]:a).trim();}
   function pkgCard(p,i){const{was,off}=priceInfo(p.offer_price,p.num);const np=(p.claimed_tests||'').replace(/Test.*/i,'').trim()||pcount(p);const key='p'+p.num;const inC=cartGet().some(x=>x.key===key);
     return `<div class="cx-card" style="--tc:${COL[i%COL.length]}">
       <div class="cc-top"><span class="cc-ic"><svg class="ic"><use href="#${ICONS[i%ICONS.length]}"/></svg></span><span class="cc-badge">${off}% OFF</span></div>
       <h3>${esc(p.name)}</h3>
+      ${p.about?`<p class="cc-about">${esc(aboutLead(p))}</p>`:''}
       <div class="cc-meta"><span><svg><use href="#i-activity"/></svg><b>${esc(np)}</b>&nbsp;params</span><span><svg><use href="#i-clock"/></svg>${reportsWithin(p.offer_price)}</span></div>
       <div class="cc-pr"><span class="cc-now">${inr(p.offer_price)}</span><span class="cc-was">${inr(was)}</span></div>
       <div class="cc-btns"><a class="cx-btn" href="catalog.html?pkg=${p.num}">View details</a><button class="cx-btn pri ${inC?'in':''}" onclick="addToCartPkg(${p.num},this)">${inC?'✓ Added':'Add to cart'}</button></div>
@@ -335,6 +339,7 @@ body{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif}
     $('catMain').innerHTML=crumb([{t:p.section_short||p.section_title,href:'catalog.html?section='+p.section_id},{t:p.name}])+`
       <div class="cx-detail">
         <div class="cx-head" style="margin-bottom:6px"><span class="cx-eye"><span class="dot"></span>${esc(p.section_title)}</span><h1>${esc(p.name)}</h1></div>
+        ${p.about?`<p class="cx-about">${esc(p.about)}</p>`:''}
         <div class="cx-dprice"><span class="now">${inr(p.offer_price)}</span><span class="was">${inr(was)}</span><span class="off">${off}% OFF</span></div>
         <div class="cx-facts">
           <div class="cx-fact"><span>Parameters</span><b>${esc(p.claimed_tests||(pc+' tests'))}</b></div>
